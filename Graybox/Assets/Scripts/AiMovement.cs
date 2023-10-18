@@ -11,19 +11,16 @@ public class AiMovement : MonoBehaviour
     public Button pauseButton;
     private Rigidbody2D rb;
     public float speed;
-    bool isMoving = false;
     public float jumpForce = 200;
 
     public void StopMovement()
     {
         Time.timeScale = 0;
-        isMoving = false;
     }
 
     public void StartMovement()
     {
         Time.timeScale = 1;
-        isMoving = true; 
     }
 
     public void Jump()
