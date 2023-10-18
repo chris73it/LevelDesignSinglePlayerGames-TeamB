@@ -11,22 +11,19 @@ public class AiMovement : MonoBehaviour
     public Button pauseButton;
     private Rigidbody2D rb;
     public float speed;
-    bool isMoving = false;
     public float jumpForce = 200;
 
-    void StopMovement()
+    public void StopMovement()
     {
         Time.timeScale = 0;
-        isMoving = false;
     }
 
-    void StartMovement()
+    public void StartMovement()
     {
         Time.timeScale = 1;
-        isMoving = true; 
     }
 
-    void Jump()
+    public void Jump()
     {
         rb.AddForce(new Vector2(0, jumpForce));
     }
@@ -42,8 +39,6 @@ public class AiMovement : MonoBehaviour
     {
         transform.position = pointA.transform.position;
         Time.timeScale = 0;
-        startButton.onClick.AddListener(StartMovement);
-        pauseButton.onClick.AddListener(StopMovement);
         rb = GetComponent<Rigidbody2D>();
     }
 
