@@ -4,31 +4,44 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 { 
-    public static event Action OnSpacePressed;
+    public static event Action OnJumpPressed;
+    public static event Action OnDeath;
     public Button playButton;
     public Button pauseButton;
     private Vector3 playerPos;
-    private Animator playerAnimator; 
+    private Animator playerAnimator;
+    private bool isWalking = false;
+    private bool isPaused = false;
+    private Rigidbody2D rb;
+    [SerializeField] float playerSpeed;
 
     public void Play()
     {
-        Debug.Log("play");
         playerAnimator.SetBool("isWalking", true);
+        isWalking = true;
         playerAnimator.SetBool("isPaused", false);
-        Debug.Log(playerAnimator.GetBool("isWalking"));
-        Debug.Log(playerAnimator.GetBool("isPaused"));
+        isPaused = false; 
     }
 
     public void Pause()
     {
-        Debug.Log("pause");
         playerAnimator.SetBool("isPaused", true);
-        Debug.Log(playerAnimator.GetBool("isPaused"));
+        isPaused = true; 
+    }
+
+    public void MoveRight()
+    {
+        if (isWalking == true  && isPaused == false)
+        {
+            //rb.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);
+            transform.Translate(Vector3.right * playerSpeed);
+        }
     }
 
     private void Start()
     {
-        playerAnimator = gameObject.GetComponent<Animator>(); 
+        playerAnimator = gameObject.GetComponent<Animator>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
         playerPos = this.transform.position; 
         playButton.onClick.AddListener(Play);
         pauseButton.onClick.AddListener(Pause);
@@ -38,9 +51,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            OnSpacePressed?.Invoke(); 
+            OnJumpPressed?.Invoke(); 
         }
+    }
+
+    private void FixedUpdate()
+    {
+        MoveRight();
     }
 }
