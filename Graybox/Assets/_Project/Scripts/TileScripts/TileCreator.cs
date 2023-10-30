@@ -1,18 +1,12 @@
-using PlasticPipe.PlasticProtocol.Messages;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
-public class TileCreator : Singleton<TileCreator>
-{
+public class TileCreator : MonoBehaviour {
 
     // Temporary:
     public TilePlacement defaultBlock;
 
-    [SerializeField] Tilemap previewMap, levelMap;
-    TileInputs playerInput;
+    [SerializeField] Tilemap previewMap, playerMap;
 
     Camera camera;
 
@@ -31,27 +25,16 @@ public class TileCreator : Singleton<TileCreator>
         }
     }
 
-    protected override void Awake() {
-        base.Awake();
-        playerInput = new TileInputs();
+    protected void Awake() {
         camera = Camera.main;
         CurrentBlock = defaultBlock;
     }
 
     private void OnEnable() {
-        playerInput.Enable();
-        playerInput.EditorPlacement.MousePosition.performed += OnMouseMove;
-        playerInput.EditorPlacement.Mouse1.performed += OnMouse1;
-        playerInput.EditorPlacement.Mouse2.performed += OnMouse2;
     }
 
     private void OnDisable() {
-        playerInput.Disable();
-        playerInput.EditorPlacement.MousePosition.performed -= OnMouseMove;
-        playerInput.EditorPlacement.Mouse1.performed -= OnMouse1;
-        playerInput.EditorPlacement.Mouse2.performed -= OnMouse2;
     }
-
     private void Update() {
         if(currentBlock != null) {
             Vector3 pos = camera.ScreenToWorldPoint(m_pos);
@@ -62,6 +45,15 @@ public class TileCreator : Singleton<TileCreator>
                 UpdatePreview();
             }
         }
+
+        if(Input.GetMouseButtonDown(0)) {
+            if(currentBlock != null)
+                DrawItem(tileBase);
+        }
+        if(Input.GetMouseButtonDown(1)) {
+            DrawItem(null);
+        }
+        m_pos = Input.mousePosition;
     }
 
     private void UpdatePreview() {
@@ -70,19 +62,6 @@ public class TileCreator : Singleton<TileCreator>
     }
 
     private void DrawItem(TileBase item) {
-        levelMap.SetTile(currentGridPos, item);
-    }
-
-    private void OnMouseMove(InputAction.CallbackContext context) {
-        m_pos = context.ReadValue<Vector2>();
-    }
-
-    private void OnMouse1(InputAction.CallbackContext context) {
-        if(currentBlock != null)
-            DrawItem(tileBase);
-    }
-
-    private void OnMouse2(InputAction.CallbackContext context) {
-        DrawItem(null);
+        playerMap.SetTile(currentGridPos, item);
     }
 }

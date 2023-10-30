@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 770617685}
   - component: {fileID: 770617684}
   m_Layer: 0
-  m_Name: Tilemap
+  m_Name: playerMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -923,7 +923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1976405876}
-  - component: {fileID: 1976405875}
+  - component: {fileID: 1976405877}
   m_Layer: 0
   m_Name: TilePlacementScriptHolder
   m_TagString: Untagged
@@ -931,21 +931,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1976405875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976405874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53bb2531a37b9d04da6e585b5d13a70d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultBlock: {fileID: 11400000, guid: 525b185653888b44d8b9eed3c4d6468c, type: 2}
-  previewMap: {fileID: 2067075584}
-  levelMap: {fileID: 770617685}
 --- !u!4 &1976405876
 Transform:
   m_ObjectHideFlags: 0
@@ -961,6 +946,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1976405877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976405874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53bb2531a37b9d04da6e585b5d13a70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultBlock: {fileID: 11400000, guid: 525b185653888b44d8b9eed3c4d6468c, type: 2}
+  previewMap: {fileID: 2067075584}
+  playerMap: {fileID: 770617685}
 --- !u!1 &2067075583
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,7 +995,7 @@ Tilemap:
   m_TileColorArray: []
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0.3529412}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
