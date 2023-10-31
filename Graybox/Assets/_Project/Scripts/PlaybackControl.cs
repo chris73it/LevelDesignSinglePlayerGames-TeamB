@@ -11,11 +11,18 @@ public class PlaybackControl : MonoBehaviour
    [SerializeField] Button pauseButton;
     public static event Action play;
     public static event Action pause;
+    //reference to attached UI canvas; you should know you'll have this since it's a UI based script
+    private Canvas canvas;
 
     void Start()
     {
-       startButton.onClick.AddListener(PlayInvoke);
-       pauseButton.onClick.AddListener(PauseInvoke);
+        // adds onClick event listeners to the UI buttons (my preference over dragging in the Inspector, could be wrong)
+        startButton.onClick.AddListener(PlayInvoke);
+        pauseButton.onClick.AddListener(PauseInvoke);
+
+        canvas = GetComponent<Canvas>();
+        // assigns the main camera as the render camera for the Canvas, only works if we stick with main camera going forward
+        canvas.worldCamera = Camera.main;
     }
 
     public void PlayInvoke()
