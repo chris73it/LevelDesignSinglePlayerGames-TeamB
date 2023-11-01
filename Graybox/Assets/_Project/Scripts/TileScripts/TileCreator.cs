@@ -27,9 +27,14 @@ public class TileCreator : MonoBehaviour {
         }
     }
 
-    private void Start () {
+    private void OnEnable() {
         PlaybackControl.play += Play;
         PlaybackControl.pause += Pause;
+    }
+
+    private void OnDisable() {
+        PlaybackControl.play -= Play;
+        PlaybackControl.pause -= Pause;
     }
 
     protected void Awake() {
@@ -79,10 +84,10 @@ public class TileCreator : MonoBehaviour {
     }
 
     private bool OnMap(Vector3 position) {
-        float width = transform.localScale.x / 2;
-        float height = transform.localScale.y / 2;
+        float width = transform.localScale.x;
+        float height = transform.localScale.y;
         Vector2 diff = position - transform.position;
-        return Mathf.Abs(diff.x) <= width && Mathf.Abs(diff.y) <= height;
+        return Mathf.Abs(diff.x) <= width/2 && Mathf.Abs(diff.y) <= height/2;
     }
 
     private void DrawItem(TileBase item) {
