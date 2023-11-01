@@ -9,7 +9,7 @@ public enum Category {
 }
 
 [CreateAssetMenu (fileName ="Buildable", menuName ="BuildingObjects/Create Buildable")]
-public class TilePlacement : ScriptableObject
+public class TileObject : ScriptableObject
 {
     // Start is called before the first frame update
     [SerializeField] Category category;
