@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool onFirstCollision = false;
     //inspector editable variables for jump and movement speed
     [SerializeField] float playerSpeed;
+    [SerializeField] float maxMoveSpeed;
     [SerializeField] float jumpForce = 400f;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         playerAnimator.SetBool("isWalking", true);
         isWalking = true;
+        playerRB.simulated = true;
         playerAnimator.SetBool("isPaused", false);
         isPaused = false;
     }
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public void Pause()
     {
         playerAnimator.SetBool("isPaused", true);
+        playerRB.simulated = false;
         isPaused = true;
     }
 
@@ -45,7 +48,11 @@ public class PlayerController : MonoBehaviour
 
             //might be better to rewrite as "rb.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);"
             //not sure if the translate method here is affected by drag and other physics attributes of the ground (might want slick ice ground or sticky mud ground). worth investigating?
-            transform.Translate(Vector3.right * playerSpeed);
+            //transform.Translate(Vector3.right * playerSpeed);
+            if (playerRB.velocity.x < maxMoveSpeed)
+            {
+                playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -101,6 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             Dying();
         }
+
     }
 
     //called every physics frame so the player keeps moving
