@@ -10,7 +10,7 @@ public class TileCreator : MonoBehaviour {
 
     Camera camera;
     
-    Vector2 m_pos;
+    Vector3 m_pos;
     Vector3Int currentGridPos;
     Vector3Int prevGridPos;
 
@@ -50,8 +50,7 @@ public class TileCreator : MonoBehaviour {
 
     private void Update() {
         if(currentBlock != null) {
-            Vector3 pos = camera.ScreenToWorldPoint(m_pos);
-            Vector3Int gridPos = previewMap.WorldToCell(pos);
+            Vector3Int gridPos = previewMap.WorldToCell(m_pos);
             if(gridPos != currentGridPos) {
                 prevGridPos = currentGridPos;
                 currentGridPos = gridPos;
@@ -59,7 +58,7 @@ public class TileCreator : MonoBehaviour {
             }
         }
 
-        if(isPaused) {
+        if(isPaused && OnMap(m_pos)) {
             if(Input.GetMouseButton(0)) {
                 if(currentBlock != null)
                     DrawItem(tileBase);
@@ -68,12 +67,22 @@ public class TileCreator : MonoBehaviour {
                 DrawItem(null);
             }
         }
-        m_pos = Input.mousePosition;
+        m_pos = camera.ScreenToWorldPoint(Input.mousePosition);
+        
     }
 
     private void UpdatePreview() {
         previewMap.SetTile(prevGridPos, null);
-        previewMap.SetTile(currentGridPos, tileBase);
+        if(OnMap(m_pos)) {
+            previewMap.SetTile(currentGridPos, tileBase);
+        }
+    }
+
+    private bool OnMap(Vector3 position) {
+        float width = transform.localScale.x / 2;
+        float height = transform.localScale.y / 2;
+        Vector2 diff = position - transform.position;
+        return Mathf.Abs(diff.x) <= width && Mathf.Abs(diff.y) <= height;
     }
 
     private void DrawItem(TileBase item) {
