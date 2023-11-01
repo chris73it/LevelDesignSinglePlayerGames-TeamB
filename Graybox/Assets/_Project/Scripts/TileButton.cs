@@ -1,31 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.UIElements;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class TileButton : MonoBehaviour
 {
     [SerializeField] int levelLimit;
     [SerializeField] GameObject itemForButton;
-    [SerializeField] Sprite buttonSprite; 
+    [SerializeField] Sprite buttonSprite;
+    [SerializeField] TMP_Text countTMP; 
     private bool onCurrentLevel = false;
 
-    private Image icon; 
+    private Image icon;
+    private int currentTotal;
+    private string labelText; 
 
-    private void Start()
+
+    private void Awake()
     {
-        icon = this.GetComponent<Image>();
-        icon.sprite = buttonSprite;
 
         if (levelLimit >= 1)
         {
             onCurrentLevel = true;
         }
 
-      if (!onCurrentLevel)
+        currentTotal = levelLimit;
+        labelText = currentTotal + "/" + levelLimit;
+    }
+
+    private void Start()
+    {
+        icon = this.GetComponent<Image>();
+        icon.sprite = buttonSprite;
+
+        if (!onCurrentLevel)
         {
-            icon.color = Color.gray; 
+            icon.color = Color.gray;
+            labelText = " ";
         }
+    }
+
+    private void Update()
+    {
+        countTMP.text = labelText;
     }
 }
