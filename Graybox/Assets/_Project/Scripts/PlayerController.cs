@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         playerAnimator.SetBool("isWalking", true);
         isWalking = true;
+        // Simulate physics again when play button is pressed.
         playerRB.simulated = true;
         playerAnimator.SetBool("isPaused", false);
         isPaused = false;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
     public void Pause()
     {
         playerAnimator.SetBool("isPaused", true);
+        // We don't want to simulate physics while the game is paused because that would make it possible for the character
+        // to keep falling when paused.
         playerRB.simulated = false;
         isPaused = true;
     }
@@ -45,10 +48,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isWalking == true && isPaused == false)
         {
-
-            //might be better to rewrite as "rb.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);"
-            //not sure if the translate method here is affected by drag and other physics attributes of the ground (might want slick ice ground or sticky mud ground). worth investigating?
             //transform.Translate(Vector3.right * playerSpeed);
+
+            // By adding a force rather than simply translating the player character's movement, we can make it possible to
+            // simulate certain surfaces such as ice or mud, as well as make movement more realistic overall.
             if (playerRB.velocity.x < maxMoveSpeed)
             {
                 playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);
