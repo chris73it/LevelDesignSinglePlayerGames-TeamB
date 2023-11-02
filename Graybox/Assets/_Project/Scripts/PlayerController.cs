@@ -31,10 +31,11 @@ public class PlayerController : MonoBehaviour
         isPaused = false;
     }
 
-    public void Pause()
+    public void Restart()
     {
-        playerAnimator.SetBool("isPaused", true);
-        isPaused = true;
+        respawn?.Invoke();
+        thisPlayer = GameObject.FindWithTag("Player");
+        Destroy(thisPlayer);
     }
 
     //Movement methods
@@ -58,11 +59,10 @@ public class PlayerController : MonoBehaviour
     }
 
     //WaitForSeconds method used so the death animation had time to play before player is destroyed
-    IEnumerator Die()
+    IEnumerator SlowDie()
     {
         yield return new WaitForSeconds(deathDelay);
         respawn?.Invoke();
-        Debug.Log("k pressed");
         Destroy(thisPlayer);
     }
 
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         if (onFirstCollision == false)
         {
             onFirstCollision = true;
-            StartCoroutine(Die());
+            StartCoroutine(SlowDie());
             playerAnimator.SetBool("isDead", true);
             playerRB.simulated = false;
             thisPlayer = GameObject.FindWithTag("Player");
@@ -114,14 +114,14 @@ public class PlayerController : MonoBehaviour
     {
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
-        PlaybackControl.pause += Pause;
+        PlaybackControl.restart += Restart;
     }
 
     private void OnDisable()
     {
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;
-        PlaybackControl.pause -= Pause; 
+        PlaybackControl.restart -= Restart; 
     }
 
     //ground check so player can't double jump

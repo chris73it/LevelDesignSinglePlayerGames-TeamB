@@ -18,9 +18,12 @@ public class TileCreator : MonoBehaviour {
     Vector2 m_pos;
     Vector3Int currentGridPos;
     Vector3Int prevGridPos;
+    Vector3 offset;
 
     TileBase currentTileBase;
     GameObject currentBlock;
+
+    private bool isPlaying = false;
 
     private GameObject CurrentBlock {
         set {
@@ -32,22 +35,28 @@ public class TileCreator : MonoBehaviour {
     protected void Awake() {
         camera = Camera.main;
         CurrentBlock = null;
+        offset.x = 0.5f;
+        offset.y = 0.5f;
     }
 
     private void OnEnable() {
         TileButton.tileButtonClicked += HandleTileClick;
         TileButton.noMoreTiles += Empty;
         TileButton.tilesReplinished += Restock;
+        PlaybackControl.play += Shutdown;
+        PlaybackControl.restart += Restart;
     }
 
     private void OnDisable() {
         TileButton.tileButtonClicked -= HandleTileClick;
         TileButton.noMoreTiles -= Empty;
         TileButton.tilesReplinished -= Restock;
+        PlaybackControl.play -= Shutdown;
+        PlaybackControl.restart -= Shutdown;
     }
 
     private void Update() {
-        if(currentBlock != null  && emptyClip == false) {
+        if(currentBlock != null  && emptyClip == false && isPlaying == false) {
             Vector3 pos = camera.ScreenToWorldPoint(m_pos);
             Vector3Int gridPos = previewMap.WorldToCell(pos);
             if(gridPos != currentGridPos) {
@@ -58,7 +67,7 @@ public class TileCreator : MonoBehaviour {
         }
 
         if(Input.GetMouseButtonDown(0)) {
-            if(currentBlock != null && emptyClip == false)
+            if(currentBlock != null && emptyClip == false && isPlaying == false)
             {
                 if (CastRay() == null)
                 {
@@ -70,8 +79,8 @@ public class TileCreator : MonoBehaviour {
             }
         }
         if(Input.GetMouseButtonDown(1)) {
-            if (CastRay() != null)
-            {
+            if (CastRay() != null && isPlaying == false)
+            { 
                 DestroyItem(CastRay());
                 tileRemoved?.Invoke();
             }
@@ -86,7 +95,7 @@ public class TileCreator : MonoBehaviour {
 
     private void DrawItem() {
         //playerMap.SetTile(currentGridPos, item);
-        Instantiate(currentBlock, currentGridPos, Quaternion.identity); 
+        Instantiate(currentBlock, currentGridPos + offset,Quaternion.identity); 
     }
 
     private void DestroyItem(GameObject clickedBlock)
@@ -123,5 +132,15 @@ public class TileCreator : MonoBehaviour {
     private void Restock()
     {
         emptyClip = false;
+    }
+
+    void Shutdown()
+    {
+        isPlaying = true;
+    }
+
+    void Restart()
+    {
+        isPlaying = false;
     }
 }

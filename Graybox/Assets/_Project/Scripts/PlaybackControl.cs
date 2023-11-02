@@ -8,11 +8,11 @@ using System.Collections;
 
 public class PlaybackControl : MonoBehaviour
 {
-   [SerializeField] Button startButton;
-   [SerializeField] Button pauseButton;
+   [SerializeField] Button playButton;
+   [SerializeField] Button restartButton;
   
     public static event Action play;
-    public static event Action pause;
+    public static event Action restart;
     //reference to attached UI canvas; you should know you'll have this since it's a UI based script
     private Canvas canvas;
 
@@ -21,8 +21,8 @@ public class PlaybackControl : MonoBehaviour
     void Start()
     {
         // adds onClick event listeners to the UI buttons (my preference over dragging in the Inspector, could be wrong)
-        startButton.onClick.AddListener(Play);
-        pauseButton.onClick.AddListener(Pause);
+        playButton.onClick.AddListener(Play);
+        restartButton.onClick.AddListener(Pause);
 
         canvas = GetComponent<Canvas>();
         // assigns the main camera as the render camera for the Canvas, only works if we stick with main camera going forward
@@ -38,7 +38,7 @@ public class PlaybackControl : MonoBehaviour
 
     public void Pause()
     {
-        pause?.Invoke();
+        restart?.Invoke();
     }
 
 }

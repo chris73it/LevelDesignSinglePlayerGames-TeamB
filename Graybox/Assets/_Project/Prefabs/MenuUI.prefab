@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90, y: 155}
+  m_AnchoredPosition: {x: -90, y: 165.88506}
   m_SizeDelta: {x: 150, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1310959249996306250
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 5726977104582424020}
   - component: {fileID: 5041409789566181423}
   m_Layer: 5
-  m_Name: PauseBT
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,7 +294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: 155}
+  m_AnchoredPosition: {x: 85, y: 165.88506}
   m_SizeDelta: {x: 150, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4552324001133090070
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
@@ -510,8 +510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f83fc36848a4aa5b8b4cdcaa63f828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 8908386528470815338}
-  pauseButton: {fileID: 5041409789566181423}
+  playButton: {fileID: 8908386528470815338}
+  restartButton: {fileID: 5041409789566181423}
 --- !u!1 &7080217433548628291
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pause
+  m_text: Restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -789,7 +789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 409571451704435244, guid: 29d9b1c5bbf4e4ea58b0bbd5c80a8ebf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -327.78842
+      value: -320.10632
       objectReference: {fileID: 0}
     - target: {fileID: 409571451704435244, guid: 29d9b1c5bbf4e4ea58b0bbd5c80a8ebf, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -809,12 +809,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3321986416177084221, guid: 29d9b1c5bbf4e4ea58b0bbd5c80a8ebf, type: 3}
       propertyPath: levelLimit
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3321986416177084221, guid: 29d9b1c5bbf4e4ea58b0bbd5c80a8ebf, type: 3}
+      propertyPath: buttonSprite
+      value: 
+      objectReference: {fileID: -1871772964, guid: 5ccb04d8c10fb35499a6093a0bbdeed1, type: 3}
     - target: {fileID: 3321986416177084221, guid: 29d9b1c5bbf4e4ea58b0bbd5c80a8ebf, type: 3}
       propertyPath: itemForButton
       value: 
-      objectReference: {fileID: 7325645274404111737, guid: 5e6931637fc3a4a6d9822388661230d2, type: 3}
+      objectReference: {fileID: 7325645274404111737, guid: 6211b8d057a33490cad1acf65c4100d7, type: 3}
+    - target: {fileID: 6654807115758930564, guid: 29d9b1c5bbf4e4ea58b0bbd5c80a8ebf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1871772964, guid: 5ccb04d8c10fb35499a6093a0bbdeed1, type: 3}
     - target: {fileID: 7892594135866724086, guid: 29d9b1c5bbf4e4ea58b0bbd5c80a8ebf, type: 3}
       propertyPath: m_Name
       value: TileBTTemplate
