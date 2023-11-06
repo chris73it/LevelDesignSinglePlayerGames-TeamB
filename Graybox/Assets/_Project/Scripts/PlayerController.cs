@@ -24,6 +24,14 @@ public class PlayerController : MonoBehaviour
     //delegate to invoke a respawn message upon death
     public static event Action respawn;
 
+    enum States
+    {
+        right = 0,
+        left
+    }
+
+    States state = States.right;
+
     //animation controls 
     public void Play()
     {
@@ -56,12 +64,9 @@ public class PlayerController : MonoBehaviour
     {
         currentSpeed += factor;
     }
-
-    public void Move()
-    {
-        playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
-    }
-    public void MoveRight()
+    
+    // Moved the MoveRight function into one function and made it bidirectional.
+    public void Move(float speed)
     {
         if (isWalking == true && isPaused == false)
         {
@@ -69,12 +74,24 @@ public class PlayerController : MonoBehaviour
 
             // By adding a force rather than simply translating the player character's movement, we can make it possible to
             // simulate certain surfaces such as ice or mud, as well as make movement more realistic overall.
-            if (currentSpeed < maxMoveSpeed)
+            if ((currentSpeed < maxMoveSpeed && state == States.right) || (currentSpeed > -(maxMoveSpeed) && state == States.left))
             {
-                Accelerate(playerSpeed);
-                //playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);
+                Accelerate(speed);
+                //playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);  
             }
-            Move();
+            playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
+        }
+    }
+    public void TurnAround()
+    {
+        switch (state)
+        {
+            case States.right:
+                state = States.left;
+                break;
+            case States.left:
+                state = States.right;
+                break;
         }
     }
 
@@ -131,12 +148,29 @@ public class PlayerController : MonoBehaviour
             Dying();
         }
 
+        // Debug turn around. We only want to actually use this with power ups.
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TurnAround();
+        }
+
     }
 
     //called every physics frame so the player keeps moving
     private void FixedUpdate()
     {
-            MoveRight();
+        switch (state) {
+            case States.right:
+                Move(playerSpeed);
+                break;
+            case States.left:
+                Move(-playerSpeed);
+                break;
+            default:
+                break;
+        }
+
+        
     }
 
     //subscribing and unsubscribing from delegates in other scripts 
