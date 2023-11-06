@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingGround = true;
     private bool onFirstCollision = false;
     //inspector editable variables for jump and movement speed
+    private float currentSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float maxMoveSpeed;
     [SerializeField] float jumpForce = 400f;
@@ -26,24 +27,40 @@ public class PlayerController : MonoBehaviour
     //animation controls 
     public void Play()
     {
-        playerAnimator.SetBool("isWalking", true);
-        isWalking = true;
-        // Simulate physics again when play button is pressed.
-        playerRB.simulated = true;
-        playerAnimator.SetBool("isPaused", false);
-        isPaused = false;
+        if (isPaused && !onFirstCollision)
+        {
+            playerAnimator.SetBool("isWalking", true);
+            isWalking = true;
+            // Simulate physics again when play button is pressed.
+            playerRB.simulated = true;
+            playerAnimator.SetBool("isPaused", false);
+            isPaused = false;
+        }
     }
 
     public void Pause()
     {
-        playerAnimator.SetBool("isPaused", true);
-        // We don't want to simulate physics while the game is paused because that would make it possible for the character
-        // to keep falling when paused.
-        playerRB.simulated = false;
-        isPaused = true;
+        if (!onFirstCollision)
+        {
+            playerAnimator.SetBool("isPaused", true);
+            // We don't want to simulate physics while the game is paused because that would make it possible for the character
+            // to keep falling when paused.
+            playerRB.simulated = false;
+            isPaused = true;
+        }
     }
 
     //Movement methods
+
+    public void Accelerate(float factor)
+    {
+        currentSpeed += factor;
+    }
+
+    public void Move()
+    {
+        playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
+    }
     public void MoveRight()
     {
         if (isWalking == true && isPaused == false)
@@ -52,10 +69,12 @@ public class PlayerController : MonoBehaviour
 
             // By adding a force rather than simply translating the player character's movement, we can make it possible to
             // simulate certain surfaces such as ice or mud, as well as make movement more realistic overall.
-            if (playerRB.velocity.x < maxMoveSpeed)
+            if (currentSpeed < maxMoveSpeed)
             {
-                playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);
+                Accelerate(playerSpeed);
+                //playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);
             }
+            Move();
         }
     }
 
