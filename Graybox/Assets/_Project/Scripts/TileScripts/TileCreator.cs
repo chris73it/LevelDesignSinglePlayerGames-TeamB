@@ -8,7 +8,6 @@ public class TileCreator : MonoBehaviour {
 
     [SerializeField] Tilemap previewMap, playerMap;
 
-    Camera camera;
     
     Vector3 m_pos;
     Vector3Int currentGridPos;
@@ -38,7 +37,6 @@ public class TileCreator : MonoBehaviour {
     }
 
     protected void Awake() {
-        camera = Camera.main;
         CurrentBlock = defaultBlock;
     }
 
@@ -72,7 +70,7 @@ public class TileCreator : MonoBehaviour {
                 DrawItem(null);
             }
         }
-        m_pos = camera.ScreenToWorldPoint(Input.mousePosition);
+        m_pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
     }
 
