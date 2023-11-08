@@ -176,6 +176,7 @@ public class PlayerController : MonoBehaviour
     //subscribing and unsubscribing from delegates in other scripts 
     private void OnEnable()
     {
+        TurnPickup.turnaround += TurnAround;
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
         PlaybackControl.pause += Pause;
@@ -183,6 +184,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
+        TurnPickup.turnaround -= TurnAround;
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;
         PlaybackControl.pause -= Pause; 
