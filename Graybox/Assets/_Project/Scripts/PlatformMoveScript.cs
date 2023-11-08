@@ -6,16 +6,14 @@ enum MoveState {
     Moving, Waiting
 }
 
-public class PlatformMoveScript : MonoBehaviour
-{
-    // Start is called before the first frame update
+public class PlatformMoveScript : MonoBehaviour {
 
     public GameObject targetObject;
     public float speed = 5f;
     Vector3 origin;
     MoveState moveState = MoveState.Waiting;
     Rigidbody2D rb;
-    void Start(){
+    void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
 
