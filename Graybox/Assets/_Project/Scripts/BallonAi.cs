@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GhostAI : MonoBehaviour
+public class BallonAi : MonoBehaviour
 {
     [SerializeField] Button startButton;
     [SerializeField] Button pauseButton;
@@ -13,17 +13,17 @@ public class GhostAI : MonoBehaviour
     private bool movingRight = true;
     private bool isActive = false;
     public Transform groundDetection;
-    private Animator ghostAnimator;
-    
+    private Animator ballonAnimator;
+
 
     private void Play()
     {
         isActive = true;
     }
-    
+
     private void Start()
     {
-        ghostAnimator = gameObject.GetComponent<Animator>();
+        ballonAnimator = gameObject.GetComponent<Animator>();
         PlaybackControl.play += Play;
     }
 
@@ -35,11 +35,11 @@ public class GhostAI : MonoBehaviour
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
-        if(groundInfo.collider == false)
+        if (groundInfo.collider == false)
         {
-            if(movingRight == true )
+            if (movingRight == true)
             {
-                transform.eulerAngles = new Vector3(0, -180, 0);
+                transform.eulerAngles = new Vector3(0, 0, -180);
                 movingRight = false;
             }
             else
