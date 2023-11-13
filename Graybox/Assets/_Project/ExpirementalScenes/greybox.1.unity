@@ -755,6 +755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Urchin
       objectReference: {fileID: 0}
+    - target: {fileID: 1380192600681163501, guid: 7afdcb2f14df84b659825d6bc15d5b28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4948427065130020944, guid: 7afdcb2f14df84b659825d6bc15d5b28, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -765,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4948427065130020944, guid: 7afdcb2f14df84b659825d6bc15d5b28, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.03
+      value: 2.69
       objectReference: {fileID: 0}
     - target: {fileID: 4948427065130020944, guid: 7afdcb2f14df84b659825d6bc15d5b28, type: 3}
       propertyPath: m_LocalPosition.z
@@ -797,6 +801,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4948427065130020944, guid: 7afdcb2f14df84b659825d6bc15d5b28, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322502238941592586, guid: 7afdcb2f14df84b659825d6bc15d5b28, type: 3}
+      propertyPath: distance
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

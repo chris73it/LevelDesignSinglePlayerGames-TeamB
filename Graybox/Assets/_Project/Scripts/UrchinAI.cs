@@ -26,7 +26,7 @@ public class UrchinAI : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, distance);
 
-            Debug.DrawRay(transform.position, Vector2.down * distance, Color.red);
+            //Debug.DrawRay(transform.position, Vector2.down * distance, Color.red);
 
             if (hit.transform.tag == "Player")
             {
