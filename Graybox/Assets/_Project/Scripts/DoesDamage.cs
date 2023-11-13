@@ -9,7 +9,10 @@ public class DoesDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        damage?.Invoke(); 
+        if(collision.gameObject.tag == "Player") {
+            damage?.Invoke();
+            Debug.Log(gameObject.name + " did damage");
+        }
     }
 
 }
