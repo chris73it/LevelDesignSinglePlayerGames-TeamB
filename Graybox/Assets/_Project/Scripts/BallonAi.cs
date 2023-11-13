@@ -9,44 +9,63 @@ public class BallonAi : MonoBehaviour
     [SerializeField] Button pauseButton;
 
     public float speed;
-    public float distance;
-    private bool movingRight = true;
+    Vector3 targetPos;
+    public GameObject ways;
+    public Transform[] wayPoints;
     private bool isActive = false;
-    public Transform groundDetection;
-    private Animator ballonAnimator;
-
-
+    int pointIndex;
+    int pointCount;
+    int direction = 1;
+    
     private void Play()
     {
         isActive = true;
     }
-
+    
+    private void Awake()
+    {
+        wayPoints = new Transform[ways.transform.childCount];
+        for (int i = 0; i < ways.gameObject.transform.childCount; i++)
+        {
+            wayPoints[i] = ways.transform.GetChild(i).gameObject.transform;
+        }
+    }
+    
     private void Start()
     {
-        ballonAnimator = gameObject.GetComponent<Animator>();
         PlaybackControl.play += Play;
+        pointCount = wayPoints.Length;
+        pointIndex = 1;
+        targetPos = wayPoints[pointIndex].transform.position;
     }
-
 
     private void Update()
     {
         if (isActive)
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            var step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+
+            if (transform.position == targetPos)
+            {
+                NextPoint();
+            }
         }
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
-        if (groundInfo.collider == false)
+    }
+
+    void NextPoint()
+    {
+        if (pointIndex == pointCount - 1)
         {
-            if (movingRight == true)
-            {
-                transform.eulerAngles = new Vector3(0, 0, -180);
-                movingRight = false;
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                movingRight = true;
-            }
+            direction = -1;
         }
+
+        if (pointIndex == 0)
+        {
+            direction = 1;
+        }
+
+        pointIndex += direction;
+        targetPos = wayPoints[pointIndex].transform.position;
     }
 }
