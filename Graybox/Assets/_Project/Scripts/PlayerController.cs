@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool onFirstCollision = false;
     //inspector editable variables for jump and movement speed
     [SerializeField] float playerSpeed;
-    [SerializeField] float jumpForce = 400f;
+    [SerializeField] float jumpForce = 600f;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
 
@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("isWalking", true);
         isWalking = true;
         playerAnimator.SetBool("isPaused", false);
+        playerRB.WakeUp();
         isPaused = false;
     }
 
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         playerAnimator.SetBool("isPaused", true);
         isPaused = true;
+        playerRB.Sleep();
     }
 
     //Movement methods
@@ -73,7 +75,8 @@ public class PlayerController : MonoBehaviour
             onFirstCollision = true;
             StartCoroutine(Die());
             playerAnimator.SetBool("isDead", true);
-            playerRB.simulated = false;
+            playerRB.Sleep();
+            isWalking = false;
             thisPlayer = GameObject.FindWithTag("Player");
         }
     }
@@ -84,7 +87,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = gameObject.GetComponent<Animator>();
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         // prevent jumping before pressing play 
-        isPaused = true;
+        Pause();
     }
 
     // Update is called once per frame
@@ -106,7 +109,7 @@ public class PlayerController : MonoBehaviour
     //called every physics frame so the player keeps moving
     private void FixedUpdate()
     {
-            MoveRight();
+        MoveRight();
     }
 
     //subscribing and unsubscribing from delegates in other scripts 
@@ -131,6 +134,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             isTouchingGround = true;
+         /*   for(int i = 0; i < collision.contactCount; ++i) {
+                if(collision.GetContact(i).point.y < 0) {
+                    isTouchingGround = true;
+                    break;
+                }
+            }*/
         }
     }
 
