@@ -18,6 +18,11 @@ public class PlaybackControl : MonoBehaviour
        pauseButton.onClick.AddListener(PauseInvoke);
     }
 
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            PlayInvoke();
+        }
+    }
     public void PlayInvoke()
     {
         play?.Invoke();

@@ -5,15 +5,12 @@ using UnityEngine.UI;
 
 public class GhostAI : MonoBehaviour
 {
-    [SerializeField] Button startButton;
-    [SerializeField] Button pauseButton;
 
     public float speed;
     public float distance;
     private bool movingRight = true;
     private bool isActive = false;
     public Transform groundDetection;
-    private Animator ghostAnimator;
     
 
     private void Play()
@@ -23,7 +20,6 @@ public class GhostAI : MonoBehaviour
     
     private void Start()
     {
-        ghostAnimator = gameObject.GetComponent<Animator>();
         PlaybackControl.play += Play;
     }
 
@@ -35,18 +31,24 @@ public class GhostAI : MonoBehaviour
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
-        if(groundInfo.collider == false)
+        Debug.DrawRay(groundDetection.position, Vector2.down * distance, Color.red);
+        if(groundInfo.collider == null)
         {
-            if(movingRight == true )
-            {
-                transform.eulerAngles = new Vector3(0, -180, 0);
-                movingRight = false;
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                movingRight = true;
-            }
+            TurnAround();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        TurnAround();
+    }
+
+    void TurnAround() {
+        if(movingRight == true) {
+            transform.eulerAngles = new Vector3(0, -180, 0);
+            movingRight = false;
+        } else {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            movingRight = true;
         }
     }
 }
