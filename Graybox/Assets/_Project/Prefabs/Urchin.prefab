@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1491498419956200336}
   - component: {fileID: 3688563491023420036}
   - component: {fileID: 1407170164073783714}
+  - component: {fileID: 7535910308192076916}
   m_Layer: 0
   m_Name: Urchin
   m_TagString: Untagged
@@ -207,3 +208,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 10
+--- !u!114 &7535910308192076916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380192600681163501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4119d3a0acb284f84e5d7e1f3e85f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
