@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 8959904325776944525}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8015645294761412910
 SpriteRenderer:
@@ -195,10 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5261ae93240b2458a92b75c34e044042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
-  pauseButton: {fileID: 0}
   speed: 3
-  distance: 0
+  distance: 3
   groundDetection: {fileID: 8959904325776944525}
 --- !u!114 &3594505453117919592
 MonoBehaviour:
@@ -236,7 +234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7438353901388648941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.48, y: -1.07, z: 13.364693}
+  m_LocalPosition: {x: 0.63, y: -0.26, z: 13.364693}
   m_LocalScale: {x: 1.5474907, y: 1.5474907, z: 1.5474907}
   m_ConstrainProportionsScale: 0
   m_Children: []
