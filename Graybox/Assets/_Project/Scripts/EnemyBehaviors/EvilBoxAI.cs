@@ -22,7 +22,6 @@ public class EvilBoxAI : MonoBehaviour {
     }
     // Start is called before the first frame update
     void Start() {
-        origin = transform.position;
         PlaybackControl.play += Play;
 
         patrol = GetComponent<GhostAI>();
