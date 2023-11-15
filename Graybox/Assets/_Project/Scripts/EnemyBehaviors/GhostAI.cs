@@ -51,4 +51,5 @@ public class GhostAI : MonoBehaviour
             movingRight = true;
         }
     }
+
 }
