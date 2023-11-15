@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(deathDelay);
         respawn?.Invoke();
-        Debug.Log("k pressed");
         Destroy(thisPlayer);
     }
 
@@ -102,6 +101,7 @@ public class PlayerController : MonoBehaviour
         // Debug kill
         if (Input.GetKeyDown(KeyCode.K))
         {
+            Debug.Log("k pressed");
             Dying();
         }
     }

@@ -8,12 +8,12 @@ public class GhostAI : MonoBehaviour
 
     public float speed;
     public float distance;
-    private bool movingRight = true;
+    public bool movingRight = true;
     private bool isActive = false;
     public Transform groundDetection;
     
 
-    private void Play()
+    public void Play()
     {
         isActive = true;
     }
@@ -42,7 +42,7 @@ public class GhostAI : MonoBehaviour
         TurnAround();
     }
 
-    void TurnAround() {
+    public void TurnAround() {
         if(movingRight == true) {
             transform.eulerAngles = new Vector3(0, -180, 0);
             movingRight = false;
