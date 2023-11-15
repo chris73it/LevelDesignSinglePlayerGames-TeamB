@@ -7,12 +7,15 @@ public class DoesDamage : MonoBehaviour
     //could be useful to rewrite as "public static event Action<Collision2D> damage;" so that the delegate can pass in the object that collided
     public static event Action damage;
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player") {
+        if(collision.gameObject.tag == "Player" && enabled) {
             damage?.Invoke();
             Debug.Log(gameObject.name + " did damage");
         }
     }
+
+
 
 }
