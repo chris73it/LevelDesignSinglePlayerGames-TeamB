@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EvilBoxAI : MonoBehaviour {
     public Transform groundDetection;
-    Vector3 origin;
     public float speed = 3f;
     public float groundDistance = 0.5f;
 
@@ -20,7 +19,6 @@ public class EvilBoxAI : MonoBehaviour {
         isActive = true;
         damage.enabled = false;
         patrol.enabled = false;
-        transform.position = origin;
     }
     // Start is called before the first frame update
     void Start() {
@@ -39,7 +37,6 @@ public class EvilBoxAI : MonoBehaviour {
     void Reset() {
         damage.enabled = false;
         patrol.enabled = false;
-        transform.position = origin;
         isActive = false;
     }
 
