@@ -22,6 +22,8 @@ ScriptedImporter:
   _entities:
   - _key: Player_Start
     _asset: {instanceID: 0}
+  - _key: Spikes
+    _asset: {fileID: 348516092990871508, guid: d2941a941daac5146bfb34af510afef2, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
