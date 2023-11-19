@@ -24,6 +24,7 @@ public class SaveManager : MonoBehaviour
         ES3.Save("unlockedLevels", unlockedLevels);
         ES3.Save("sound", sound);
         ES3.Save("music", sound);
+        Debug.Log("Saved game. Unlocked Levels - " + unlockedLevels);
     }
 
     public void LoadGame()
@@ -31,5 +32,11 @@ public class SaveManager : MonoBehaviour
         unlockedLevels = ES3.Load("unlockedLevels", 1);
         music = ES3.Load("music", true);
         sound = ES3.Load("sound", true);
+        Debug.Log("Loaded game. Unlocked Levels - " + unlockedLevels);
+    }
+
+// For debugging purposes. Increments the level unlocked counter by one.
+    public void UnlockLevel(){
+        unlockedLevels += 1;
     }
 }
