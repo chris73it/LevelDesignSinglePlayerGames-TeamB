@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingGround = true;
     private bool onFirstCollision = false;
     //inspector editable variables for jump and movement speed
+    private float currentSpeed;
     [SerializeField] float playerSpeed;
+    [SerializeField] float maxMoveSpeed;
     [SerializeField] float jumpForce = 400f;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
@@ -22,30 +24,74 @@ public class PlayerController : MonoBehaviour
     //delegate to invoke a respawn message upon death
     public static event Action respawn;
 
+    enum States
+    {
+        right = 0,
+        left
+    }
+
+    States state = States.right;
+
     //animation controls 
     public void Play()
     {
-        playerAnimator.SetBool("isWalking", true);
-        isWalking = true;
-        playerAnimator.SetBool("isPaused", false);
-        isPaused = false;
+        if (isPaused && !onFirstCollision)
+        {
+            playerAnimator.SetBool("isWalking", true);
+            isWalking = true;
+            // Simulate physics again when play button is pressed.
+            playerRB.simulated = true;
+            playerAnimator.SetBool("isPaused", false);
+            isPaused = false;
+        }
     }
 
     public void Pause()
     {
-        playerAnimator.SetBool("isPaused", true);
-        isPaused = true;
+        if (!onFirstCollision)
+        {
+            playerAnimator.SetBool("isPaused", true);
+            // We don't want to simulate physics while the game is paused because that would make it possible for the character
+            // to keep falling when paused.
+            playerRB.simulated = false;
+            isPaused = true;
+        }
     }
 
     //Movement methods
-    public void MoveRight()
+
+    public void Accelerate(float factor)
+    {
+        currentSpeed += factor;
+    }
+    
+    // Moved the MoveRight function into one function and made it bidirectional.
+    public void Move(float speed)
     {
         if (isWalking == true && isPaused == false)
         {
+            //transform.Translate(Vector3.right * playerSpeed);
 
-            //might be better to rewrite as "rb.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);"
-            //not sure if the translate method here is affected by drag and other physics attributes of the ground (might want slick ice ground or sticky mud ground). worth investigating?
-            transform.Translate(Vector3.right * playerSpeed);
+            // By adding a force rather than simply translating the player character's movement, we can make it possible to
+            // simulate certain surfaces such as ice or mud, as well as make movement more realistic overall.
+            if ((currentSpeed < maxMoveSpeed && state == States.right) || (currentSpeed > -(maxMoveSpeed) && state == States.left))
+            {
+                Accelerate(speed);
+                //playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);  
+            }
+            playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
+        }
+    }
+    public void TurnAround()
+    {
+        switch (state)
+        {
+            case States.right:
+                state = States.left;
+                break;
+            case States.left:
+                state = States.right;
+                break;
         }
     }
 
@@ -101,17 +147,36 @@ public class PlayerController : MonoBehaviour
         {
             Dying();
         }
+
+        // Debug turn around. We only want to actually use this with power ups.
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TurnAround();
+        }
+
     }
 
     //called every physics frame so the player keeps moving
     private void FixedUpdate()
     {
-            MoveRight();
+        switch (state) {
+            case States.right:
+                Move(playerSpeed);
+                break;
+            case States.left:
+                Move(-playerSpeed);
+                break;
+            default:
+                break;
+        }
+
+        
     }
 
     //subscribing and unsubscribing from delegates in other scripts 
     private void OnEnable()
     {
+        TurnPickup.turnaround += TurnAround;
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
         PlaybackControl.pause += Pause;
@@ -119,6 +184,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
+        TurnPickup.turnaround -= TurnAround;
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;
         PlaybackControl.pause -= Pause; 
