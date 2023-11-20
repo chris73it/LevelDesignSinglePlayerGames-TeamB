@@ -750,6 +750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EvilBox
       objectReference: {fileID: 0}
+    - target: {fileID: 9051133828239636850, guid: 9daeb65698805694dbaefbe8b76e00dc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5284149967931153595, guid: c8eca7f1bd8606640a9ec59646219292, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
