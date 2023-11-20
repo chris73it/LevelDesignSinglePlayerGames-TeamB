@@ -10,6 +10,8 @@ public class SaveManager : MonoBehaviour
     public bool sound = true;
     void Start()
     {
+        // We don't want to destroy the save manager on load, since we want to access it whenever we like during gameplay.
+        DontDestroyOnLoad(this);
         LoadGame();
     }
 
@@ -21,22 +23,47 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
+        ES3.CreateBackup("save.dat");
         ES3.Save("unlockedLevels", unlockedLevels);
         ES3.Save("sound", sound);
         ES3.Save("music", sound);
+        ES3.CreateBackup("save.dat");
+#if UNITY_EDITOR
         Debug.Log("Saved game. Unlocked Levels - " + unlockedLevels);
+#endif
     }
 
     public void LoadGame()
     {
-        unlockedLevels = ES3.Load("unlockedLevels", 1);
-        music = ES3.Load("music", true);
-        sound = ES3.Load("sound", true);
+        try {
+            unlockedLevels = ES3.Load("unlockedLevels", 1);
+            music = ES3.Load("music", true);
+            sound = ES3.Load("sound", true);
+        }
+        catch
+        {
+            if(ES3.RestoreBackup("save.dat")) {
+                #if UNITY_EDITOR 
+                Debug.Log("Save file was corrupted. Restored Successfully.");
+#endif
+                ES3.CreateBackup("save.dat");
+                LoadGame();
+            }
+            else {
+                #if UNITY_EDITOR
+                Debug.Log("Save File was corrupted. Restore failed. Deleting corrupted file.");
+#endif
+                ES3.DeleteFile("save.dat");
+            }
+        }
+        
+#if UNITY_EDITOR
         Debug.Log("Loaded game. Unlocked Levels - " + unlockedLevels);
+#endif
     }
 
 // For debugging purposes. Increments the level unlocked counter by one.
-    public void UnlockLevel(){
+    public void SetUnlockedLevels(){
         unlockedLevels += 1;
     }
 }

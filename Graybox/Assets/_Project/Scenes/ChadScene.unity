@@ -1063,7 +1063,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 557601186}
         m_TargetAssemblyTypeName: SaveManager, Runtime
-        m_MethodName: UnlockLevel
+        m_MethodName: SetUnlockedLevels
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
