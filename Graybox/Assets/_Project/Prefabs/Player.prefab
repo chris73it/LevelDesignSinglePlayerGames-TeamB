@@ -283,5 +283,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 0.2
   maxMoveSpeed: 3
-  jumpForce: 10
+  jumpForce: 15
   deathDelay: 2.25
