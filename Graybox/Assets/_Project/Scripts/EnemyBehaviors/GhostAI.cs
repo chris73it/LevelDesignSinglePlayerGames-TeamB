@@ -40,7 +40,6 @@ public class GhostAI : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         if(isActive) {
             TurnAround();
-            Debug.Log(collision.gameObject.name);
         }
     }
 
@@ -51,7 +50,6 @@ public class GhostAI : MonoBehaviour {
     }
 
     public void TurnAround() {
-        Debug.Log("turning around");
         if(movingRight == true) {
             transform.eulerAngles = new Vector3(0, -180, 0);
             movingRight = false;
