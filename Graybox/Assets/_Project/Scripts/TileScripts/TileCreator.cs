@@ -29,11 +29,13 @@ public class TileCreator : MonoBehaviour {
     private void OnEnable() {
         PlaybackControl.play += Play;
         PlaybackControl.pause += Pause;
+        PlayerController.respawn += Pause;
     }
 
     private void OnDisable() {
         PlaybackControl.play -= Play;
         PlaybackControl.pause -= Pause;
+        PlayerController.respawn -= Pause;
     }
 
     protected void Awake() {
