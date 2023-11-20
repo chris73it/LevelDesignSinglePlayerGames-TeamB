@@ -15,6 +15,16 @@ public class SaveManager : MonoBehaviour
         LoadGame();
     }
 
+    int timesAwaken = 0;
+    private void Awake()
+    {
+        timesAwaken++;
+        if(timesAwaken >= 2)
+        {
+            Debug.Log("WARNING: There can only be one save manager. Please delete the duplicate in your scene.");
+            Destroy(gameObject);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
