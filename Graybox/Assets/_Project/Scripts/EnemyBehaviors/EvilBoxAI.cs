@@ -55,7 +55,6 @@ public class EvilBoxAI : MonoBehaviour {
     private void OnCollisionExit2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player") {
             StartCoroutine(Awaken(1f, collision));
-            Debug.Log(patrol.movingRight);
         }
     }
     

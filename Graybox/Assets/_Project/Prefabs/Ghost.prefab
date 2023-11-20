@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2903231725237813467}
   - component: {fileID: 5777933823202298183}
   - component: {fileID: 3594505453117919592}
+  - component: {fileID: 7559095046516181810}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 8959904325776944525}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8015645294761412910
 SpriteRenderer:
@@ -132,7 +133,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -195,10 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5261ae93240b2458a92b75c34e044042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
-  pauseButton: {fileID: 0}
   speed: 3
-  distance: 0
+  distance: 3
+  movingRight: 1
   groundDetection: {fileID: 8959904325776944525}
 --- !u!114 &3594505453117919592
 MonoBehaviour:
@@ -210,6 +210,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a367339ce19d41b9857d826fc7c7895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7559095046516181810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548108705233454896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4119d3a0acb284f84e5d7e1f3e85f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7438353901388648941
@@ -236,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7438353901388648941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.48, y: -1.07, z: 13.364693}
+  m_LocalPosition: {x: 0.63, y: -0.26, z: 13.364693}
   m_LocalScale: {x: 1.5474907, y: 1.5474907, z: 1.5474907}
   m_ConstrainProportionsScale: 0
   m_Children: []

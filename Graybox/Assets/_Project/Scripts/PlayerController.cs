@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float maxMoveSpeed;
-    [SerializeField] float jumpForce = 400f;
+    [SerializeField] float jumpForce = 600f;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
 
@@ -108,7 +108,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(deathDelay);
         respawn?.Invoke();
-        Debug.Log("k pressed");
         Destroy(thisPlayer);
     }
 
@@ -143,8 +142,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Debug kill
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K)) 
         {
+            Debug.Log("k pressed");
             Dying();
         }
 

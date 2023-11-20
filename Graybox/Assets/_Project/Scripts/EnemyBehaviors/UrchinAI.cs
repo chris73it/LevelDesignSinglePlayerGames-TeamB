@@ -16,9 +16,15 @@ public class UrchinAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        PlayerController.respawn += Reset;
     }
 
-    
+    private void Reset() {
+        isFalling = false;
+        rb.gravityScale = 0;
+        anim.SetBool("Falling", false);
+    }
+
     void Update()
     {
         Physics2D.queriesStartInColliders = false;
@@ -32,7 +38,7 @@ public class UrchinAI : MonoBehaviour
             {
                 rb.gravityScale = 5;
                 isFalling = true;
-                anim.SetTrigger("Fall");
+                anim.SetBool("Falling", true);
             }
         }
     }
