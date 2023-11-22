@@ -32,7 +32,7 @@ public class EvilBoxAI : MonoBehaviour {
         damage = GetComponent<DoesDamage>();
         rb = GetComponent<Rigidbody2D>();
 
-        PlayerController.respawn += Reset;
+        PlayerController.Respawn += Reset;
         anim = GetComponent<Animator>();
     }
 

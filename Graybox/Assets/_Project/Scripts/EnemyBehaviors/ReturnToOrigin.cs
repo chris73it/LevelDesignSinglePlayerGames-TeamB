@@ -8,7 +8,7 @@ public class ReturnToOrigin : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         origin = transform.position;
-        PlayerController.respawn += Reset;
+        PlayerController.Respawn += Reset;
     }
 
     private void Reset() {

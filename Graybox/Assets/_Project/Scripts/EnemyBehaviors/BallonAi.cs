@@ -33,7 +33,7 @@ public class BallonAi : MonoBehaviour {
 
     private void Start() {
         PlaybackControl.play += Play;
-        PlayerController.respawn += Reset;
+        PlayerController.Respawn += Reset;
         pointCount = wayPoints.Length;
         pointIndex = 1;
         targetPos = wayPoints[pointIndex].transform.position;

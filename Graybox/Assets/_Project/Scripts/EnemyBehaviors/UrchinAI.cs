@@ -16,7 +16,7 @@ public class UrchinAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-        PlayerController.respawn += Reset;
+        PlayerController.Respawn += Reset;
     }
 
     private void Reset() {
