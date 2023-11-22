@@ -18,7 +18,7 @@ public class GhostAI : MonoBehaviour {
 
     private void Start() {
         PlaybackControl.play += Play;
-        PlayerController.respawn += Reset;
+        PlayerController.Respawn += Reset;
     }
 
 
