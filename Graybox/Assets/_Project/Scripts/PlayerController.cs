@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,8 +14,13 @@ public class PlayerController : MonoBehaviour
     private bool isPaused = false;
     private bool isTouchingGround = true;
     private bool onFirstCollision = false;
-    //inspector editable variables for jump and movement speed
     private float currentSpeed;
+    private bool isIntangible = false;
+    private float intangStart = 0f;
+    private List<Collider2D> colliders;
+    //inspector editable variables for jump and movement speed
+
+
     [SerializeField] float playerSpeed;
     [SerializeField] float maxMoveSpeed;
     [SerializeField] float jumpForce = 600f;
@@ -123,6 +129,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void GoIntangible() {
+        isIntangible = true;
+        playerRB.isKinematic = true;
+        intangStart = Time.time;
+
+
+    }
+
+    void GoTangible() {
+        isIntangible = false;
+        playerRB.isKinematic = false;
+    }
+
     private void Start()
     {
         // grab references
@@ -130,11 +149,28 @@ public class PlayerController : MonoBehaviour
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         // prevent jumping before pressing play 
         isPaused = true;
+        colliders = new();
+        playerRB.GetAttachedColliders(colliders);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isIntangible && Time.time - intangStart >= 0.1f) {
+            List<Collider2D> cols = new();
+            GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), cols);
+            bool inWall = false;
+            
+            foreach(Collider2D col in cols) {
+                if(col.tag != "Player") { // temp; figure out a way to specify only walls
+                    inWall = true;
+                    break;
+                }
+            }
+            if(!inWall) {
+                GoTangible();
+            }
+        }
         // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -152,6 +188,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             TurnAround();
+        }
+
+        if(Input.GetKeyDown(KeyCode.A)) {
+            if(isIntangible) {
+                GoTangible();
+            } else {
+                GoIntangible();
+            }
         }
 
     }
