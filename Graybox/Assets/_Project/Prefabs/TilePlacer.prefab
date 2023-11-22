@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1681414482491184408}
   - component: {fileID: 3486503173383990485}
+  - component: {fileID: 6484693984766543515}
   m_Layer: 0
   m_Name: TilePlacer
   m_TagString: Untagged
@@ -44,6 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bb2531a37b9d04da6e585b5d13a70d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBlock: {fileID: 11400000, guid: de982cda5595f4f60b126dbb7c18ab00, type: 2}
   previewMap: {fileID: 0}
   playerMap: {fileID: 0}
+--- !u!114 &6484693984766543515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778927861664753184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccdb8d70c87041cea292a8be2096d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelLimits: {fileID: 11400000, guid: c2186337865ab4949a9a9d4b868b5fb9, type: 2}
+  blockCurrentTotal: 0
+  blockLevelMax: 0
+  rampCurrentTotal: 0
+  rampLevelMax: 0

@@ -8,12 +8,12 @@ public class TileCreator : MonoBehaviour {
     //public TilePlacement defaultBlock;
 
     [SerializeField] Tilemap previewMap, playerMap;
-    public static event Action tilePlaced;
-    public static event Action tileRemoved;
+    public static event Action<GameObject> tilePlaced;
+    public static event Action<GameObject> tileRemoved;
 
     new Camera camera;
 
-    bool emptyClip = false;
+    // bool emptyClip = false;
 
     Vector2 m_pos;
     Vector3Int currentGridPos;
@@ -21,42 +21,48 @@ public class TileCreator : MonoBehaviour {
     Vector3 offset;
 
     TileBase currentTileBase;
-    GameObject currentBlock;
+    GameObject currentBuildable;
+    bool blockIsEmpty;
+    bool rampIsEmpty;
 
     private bool isPlaying = false;
 
-    private GameObject CurrentBlock {
+    private GameObject CurrentBuildable {
         set {
-            currentBlock = value;
+            currentBuildable = value;
             UpdatePreview();
         }
     }
 
     protected void Awake() {
         camera = Camera.main;
-        CurrentBlock = null;
+        CurrentBuildable = null;
         offset.x = 0.5f;
         offset.y = 0.5f;
     }
 
     private void OnEnable() {
         TileButton.tileButtonClicked += HandleTileClick;
-        TileButton.noMoreTiles += Empty;
-        TileButton.tilesReplinished += Restock;
+        //TileButton.noMoreTiles += Empty;
+        //TileButton.tilesReplinished += Restock;
         PlaybackControl.play += Shutdown;
         PlaybackControl.restart += Restart;
+        BuildableCounters.blockCountChange += BlockCheck;
+        BuildableCounters.rampCountChange += RampCheck;
     }
 
     private void OnDisable() {
         TileButton.tileButtonClicked -= HandleTileClick;
-        TileButton.noMoreTiles -= Empty;
-        TileButton.tilesReplinished -= Restock;
+        //TileButton.noMoreTiles -= Empty;
+        //TileButton.tilesReplinished -= Restock;
         PlaybackControl.play -= Shutdown;
         PlaybackControl.restart -= Shutdown;
+        BuildableCounters.rampCountChange += RampCheck;
+        BuildableCounters.blockCountChange += BlockCheck;
     }
 
     private void Update() {
-        if(currentBlock != null  && emptyClip == false && isPlaying == false) {
+        if(currentBuildable != null && isPlaying == false) {
             Vector3 pos = camera.ScreenToWorldPoint(m_pos);
             Vector3Int gridPos = previewMap.WorldToCell(pos);
             if(gridPos != currentGridPos) {
@@ -67,12 +73,12 @@ public class TileCreator : MonoBehaviour {
         }
 
         if(Input.GetMouseButtonDown(0)) {
-            if(currentBlock != null && emptyClip == false && isPlaying == false)
+            if(currentBuildable != null && isPlaying == false)
             {
                 if (CastRay() == null)
                 {
                     DrawItem();
-                    tilePlaced?.Invoke();
+                    tilePlaced?.Invoke(currentBuildable);
                 } else {
                     return; 
                 }
@@ -82,7 +88,7 @@ public class TileCreator : MonoBehaviour {
             if (CastRay() != null && isPlaying == false)
             { 
                 DestroyItem(CastRay());
-                tileRemoved?.Invoke();
+                tileRemoved?.Invoke(currentBuildable);
             }
         }
         m_pos = Input.mousePosition;
@@ -94,8 +100,15 @@ public class TileCreator : MonoBehaviour {
     }
 
     private void DrawItem() {
-        //playerMap.SetTile(currentGridPos, item);
-        Instantiate(currentBlock, currentGridPos + offset,Quaternion.identity); 
+        Debug.Log(blockIsEmpty);
+        if (currentBuildable.name == "Block" && !blockIsEmpty)
+        {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
+        if (currentBuildable.name == "Ramp" && !rampIsEmpty)
+        {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
     }
 
     private void DestroyItem(GameObject clickedBlock)
@@ -117,21 +130,10 @@ public class TileCreator : MonoBehaviour {
         }
     }
 
-        private void HandleTileClick(GameObject blockPrefab)
+    private void HandleTileClick(GameObject buildablePrefab)
     {
-        currentBlock = blockPrefab;
-        currentTileBase = blockPrefab.GetComponent<PlaceableTile>().tileBase;
-        Debug.Log("message went through");
-    }
-
-    private void Empty()
-    {
-        emptyClip = true;
-    }
-
-    private void Restock()
-    {
-        emptyClip = false;
+        currentBuildable = buildablePrefab;
+        currentTileBase = buildablePrefab.GetComponent<PlaceableTile>().tileBase;
     }
 
     void Shutdown()
@@ -142,5 +144,30 @@ public class TileCreator : MonoBehaviour {
     void Restart()
     {
         isPlaying = false;
+    }
+
+    void RampCheck(int total, int max)
+    {
+        if (total == 0)
+        {
+            rampIsEmpty = true; 
+        }
+        if (total >= 1)
+        {
+            rampIsEmpty = false;
+        }
+        
+    }
+
+    void BlockCheck(int total, int max)
+    {
+        if (total == 0)
+        {
+            blockIsEmpty = true;
+        }
+        if (total >= 1)
+        {
+            blockIsEmpty = false;
+        }
     }
 }

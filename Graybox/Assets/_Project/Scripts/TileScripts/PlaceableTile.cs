@@ -14,11 +14,4 @@ public enum TagCategory
 public class PlaceableTile : MonoBehaviour
 {
     public TileBase tileBase;
-    [SerializeField] TagCategory tileTag; 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameObject.tag = tileTag.ToString();
-    }
 }
