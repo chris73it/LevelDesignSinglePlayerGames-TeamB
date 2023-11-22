@@ -7,13 +7,13 @@ public class Pickup : MonoBehaviour
     [SerializeField] protected GameObject pickup;
     private void OnEnable()
     {
-        PlayerController.respawn -= Replace;
+        PlayerController.Respawn -= Replace;
         GetComponent<Renderer>().enabled = true;
     }
 
     private void OnDisable()
     {
-        PlayerController.respawn += Replace;
+        PlayerController.Respawn += Replace;
         GetComponent<Renderer>().enabled = false;
     }
 
