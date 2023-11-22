@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,24 +11,20 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     //logical bools
     private bool isWalking = false;
-    private bool isPaused = false;
-    private bool isTouchingGround = true;
+    //private bool isPaused = false;
+    private bool isTouchingGround = false;
     private bool onFirstCollision = false;
-    private float currentSpeed;
-    private bool isIntangible = false;
-    private float intangStart = 0f;
-    private List<Collider2D> colliders;
     //inspector editable variables for jump and movement speed
-
-
+    private float currentSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float maxMoveSpeed;
-    [SerializeField] float jumpForce = 600f;
+    [SerializeField] float jumpForce = 400f;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
+    private bool isPaused; 
 
     //delegate to invoke a respawn message upon death
-    public static event Action respawn;
+    public static event Action Respawn;
 
     enum States
     {
@@ -41,7 +37,7 @@ public class PlayerController : MonoBehaviour
     //animation controls 
     public void Play()
     {
-        if (isPaused && !onFirstCollision)
+        if (!onFirstCollision)
         {
             playerAnimator.SetBool("isWalking", true);
             isWalking = true;
@@ -52,6 +48,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Restart()
+    {
+        Destroy(gameObject);
+        Respawn?.Invoke();
+    }
+
+    /* commented out Ethan's changes here since we've shifted from Pause to Restart
     public void Pause()
     {
         if (!onFirstCollision)
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
             isPaused = true;
         }
     }
+    */
 
     //Movement methods
 
@@ -74,7 +78,7 @@ public class PlayerController : MonoBehaviour
     // Moved the MoveRight function into one function and made it bidirectional.
     public void Move(float speed)
     {
-        if (isWalking == true && isPaused == false)
+        if (isWalking == true)
         {
             //transform.Translate(Vector3.right * playerSpeed);
 
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isTouchingGround == true && isPaused == false)
         {
+            Debug.Log(isTouchingGround);
             playerRB.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
@@ -113,7 +118,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator Die()
     {
         yield return new WaitForSeconds(deathDelay);
-        respawn?.Invoke();
+        Respawn?.Invoke();
+        Debug.Log("k pressed");
         Destroy(thisPlayer);
     }
 
@@ -125,21 +131,8 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Die());
             playerAnimator.SetBool("isDead", true);
             playerRB.simulated = false;
-            thisPlayer = GameObject.FindWithTag("Player");
+            thisPlayer = gameObject;
         }
-    }
-
-    void GoIntangible() {
-        isIntangible = true;
-        playerRB.isKinematic = true;
-        intangStart = Time.time;
-
-
-    }
-
-    void GoTangible() {
-        isIntangible = false;
-        playerRB.isKinematic = false;
     }
 
     private void Start()
@@ -148,29 +141,13 @@ public class PlayerController : MonoBehaviour
         playerAnimator = gameObject.GetComponent<Animator>();
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         // prevent jumping before pressing play 
+        playerAnimator.SetBool("isPaused", true);
         isPaused = true;
-        colliders = new();
-        playerRB.GetAttachedColliders(colliders);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isIntangible && Time.time - intangStart >= 0.1f) {
-            List<Collider2D> cols = new();
-            GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), cols);
-            bool inWall = false;
-            
-            foreach(Collider2D col in cols) {
-                if(col.tag != "Player") { // temp; figure out a way to specify only walls
-                    inWall = true;
-                    break;
-                }
-            }
-            if(!inWall) {
-                GoTangible();
-            }
-        }
         // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -178,9 +155,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Debug kill
-        if (Input.GetKeyDown(KeyCode.K)) 
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            Debug.Log("k pressed");
             Dying();
         }
 
@@ -188,14 +164,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             TurnAround();
-        }
-
-        if(Input.GetKeyDown(KeyCode.A)) {
-            if(isIntangible) {
-                GoTangible();
-            } else {
-                GoIntangible();
-            }
         }
 
     }
@@ -223,7 +191,8 @@ public class PlayerController : MonoBehaviour
         TurnPickup.turnaround += TurnAround;
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
-        PlaybackControl.pause += Pause;
+        //PlaybackControl.restart += Pause;
+        PlaybackControl.restart += Restart;
     }
 
     private void OnDisable()
@@ -231,7 +200,8 @@ public class PlayerController : MonoBehaviour
         TurnPickup.turnaround -= TurnAround;
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;
-        PlaybackControl.pause -= Pause; 
+        //PlaybackControl.restart -= Pause;
+        PlaybackControl.restart -= Restart;
     }
 
     //ground check so player can't double jump

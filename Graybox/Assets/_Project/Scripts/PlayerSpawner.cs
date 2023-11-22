@@ -13,12 +13,12 @@ public class PlayerSpawner : MonoBehaviour
     // subscribes to PlayerController script's respawn method, called when Player dies 
     private void OnEnable()
     {
-       PlayerController.respawn += Spawn;
+       PlayerController.Respawn += Spawn;
     }
 
     private void OnDisable()
     {
-       PlayerController.respawn -= Spawn;
+       PlayerController.Respawn -= Spawn;
     }
 
     void Spawn()
