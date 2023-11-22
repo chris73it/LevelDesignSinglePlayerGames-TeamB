@@ -47,6 +47,7 @@ public class TileCreator : MonoBehaviour {
         //TileButton.tilesReplinished += Restock;
         PlaybackControl.play += Shutdown;
         PlaybackControl.restart += Restart;
+        PlayerController.Respawn += Restart;
         BuildableCounters.blockCountChange += BlockCheck;
         BuildableCounters.rampCountChange += RampCheck;
     }
@@ -57,6 +58,7 @@ public class TileCreator : MonoBehaviour {
         //TileButton.tilesReplinished -= Restock;
         PlaybackControl.play -= Shutdown;
         PlaybackControl.restart -= Shutdown;
+        PlayerController.Respawn -= Restart;
         BuildableCounters.rampCountChange += RampCheck;
         BuildableCounters.blockCountChange += BlockCheck;
     }
@@ -64,7 +66,7 @@ public class TileCreator : MonoBehaviour {
     private void Update() {
         if(currentBuildable != null && isPlaying == false) {
             Vector3 pos = camera.ScreenToWorldPoint(m_pos);
-            Vector3Int gridPos = previewMap.WorldToCell(pos);
+            Vector3Int gridPos = previewMap.WorldToCell(m_pos);
             if(gridPos != currentGridPos) {
                 prevGridPos = currentGridPos;
                 currentGridPos = gridPos;
@@ -73,100 +75,90 @@ public class TileCreator : MonoBehaviour {
         }
 
         if(Input.GetMouseButtonDown(0)) {
-            if(currentBuildable != null && isPlaying == false)
-            {
-                if (CastRay() == null)
-                {
+            if(currentBuildable != null && isPlaying == false && OnMap(m_pos)) {
+                if(CastRay() == null) {
                     DrawItem();
                     tilePlaced?.Invoke(currentBuildable);
                 } else {
-                    return; 
+                    return;
                 }
             }
         }
         if(Input.GetMouseButtonDown(1)) {
-            if (CastRay() != null && isPlaying == false)
-            { 
+            if(CastRay() != null && isPlaying == false) {
                 DestroyItem(CastRay());
                 tileRemoved?.Invoke(currentBuildable);
             }
         }
-        m_pos = Input.mousePosition;
+        m_pos = camera.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private bool OnMap(Vector3 position) {
+        float width = transform.localScale.x;
+        float height = transform.localScale.y;
+        Vector2 diff = position - transform.position;
+        return Mathf.Abs(diff.x) <= width / 2 && Mathf.Abs(diff.y) <= height / 2;
     }
 
     private void UpdatePreview() {
         previewMap.SetTile(prevGridPos, null);
-        previewMap.SetTile(currentGridPos, currentTileBase);
+        if(OnMap(m_pos)) {
+            previewMap.SetTile(currentGridPos, currentTileBase);
+        }
     }
 
     private void DrawItem() {
         Debug.Log(blockIsEmpty);
-        if (currentBuildable.name == "Block" && !blockIsEmpty)
-        {
+        if(currentBuildable.name == "Block" && !blockIsEmpty) {
             Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
         }
-        if (currentBuildable.name == "Ramp" && !rampIsEmpty)
-        {
+        if(currentBuildable.name == "Ramp" && !rampIsEmpty) {
             Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
         }
     }
 
-    private void DestroyItem(GameObject clickedBlock)
-    {
+    private void DestroyItem(GameObject clickedBlock) {
         Destroy(clickedBlock);
     }
 
-    GameObject CastRay()
-    {
+    GameObject CastRay() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-        if (hit.collider != null)
-        {
+        if(hit.collider != null) {
             return hit.collider.gameObject;
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
-    private void HandleTileClick(GameObject buildablePrefab)
-    {
+    private void HandleTileClick(GameObject buildablePrefab) {
         currentBuildable = buildablePrefab;
         currentTileBase = buildablePrefab.GetComponent<PlaceableTile>().tileBase;
     }
 
-    void Shutdown()
-    {
+    void Shutdown() {
         isPlaying = true;
     }
 
-    void Restart()
-    {
+    void Restart() {
         isPlaying = false;
     }
 
-    void RampCheck(int total, int max)
-    {
-        if (total == 0)
-        {
-            rampIsEmpty = true; 
+    void RampCheck(int total, int max) {
+        if(total == 0) {
+            rampIsEmpty = true;
         }
-        if (total >= 1)
-        {
+        if(total >= 1) {
             rampIsEmpty = false;
         }
-        
+
     }
 
-    void BlockCheck(int total, int max)
-    {
-        if (total == 0)
-        {
+    void BlockCheck(int total, int max) {
+        if(total == 0) {
             blockIsEmpty = true;
         }
-        if (total >= 1)
-        {
+        if(total >= 1) {
             blockIsEmpty = false;
         }
     }

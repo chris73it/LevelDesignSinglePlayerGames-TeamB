@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class EvilBoxAI : MonoBehaviour {
     public Transform groundDetection;
     public float speed = 3f;
@@ -15,7 +14,6 @@ public class EvilBoxAI : MonoBehaviour {
     GhostAI patrol;
     DoesDamage damage;
     Rigidbody2D rb;
-    Animator anim;
 
     void Play() {
         isActive = true;
@@ -33,7 +31,6 @@ public class EvilBoxAI : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 
         PlayerController.Respawn += Reset;
-        anim = GetComponent<Animator>();
     }
 
     void Reset() {
@@ -48,7 +45,6 @@ public class EvilBoxAI : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.S)) {
             patrol.enabled = true;
             patrol.Play();
-            //anim.SetBool("attack", true);
         }
     }
 
