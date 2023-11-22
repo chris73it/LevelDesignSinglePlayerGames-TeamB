@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,19 +11,20 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     //logical bools
     private bool isWalking = false;
-    private bool isPaused = false;
-    private bool isTouchingGround = true;
+    //private bool isPaused = false;
+    private bool isTouchingGround = false;
     private bool onFirstCollision = false;
     //inspector editable variables for jump and movement speed
     private float currentSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float maxMoveSpeed;
-    [SerializeField] float jumpForce = 600f;
+    [SerializeField] float jumpForce = 400f;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
+    private bool isPaused; 
 
     //delegate to invoke a respawn message upon death
-    public static event Action respawn;
+    public static event Action Respawn;
 
     enum States
     {
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
     //animation controls 
     public void Play()
     {
-        if (isPaused && !onFirstCollision)
+        if (!onFirstCollision)
         {
             playerAnimator.SetBool("isWalking", true);
             isWalking = true;
@@ -46,6 +48,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Restart()
+    {
+        Destroy(gameObject);
+        Respawn?.Invoke();
+    }
+
+    /* commented out Ethan's changes here since we've shifted from Pause to Restart
     public void Pause()
     {
         if (!onFirstCollision)
@@ -57,6 +66,7 @@ public class PlayerController : MonoBehaviour
             isPaused = true;
         }
     }
+    */
 
     //Movement methods
 
@@ -68,7 +78,7 @@ public class PlayerController : MonoBehaviour
     // Moved the MoveRight function into one function and made it bidirectional.
     public void Move(float speed)
     {
-        if (isWalking == true && isPaused == false)
+        if (isWalking == true)
         {
             //transform.Translate(Vector3.right * playerSpeed);
 
@@ -99,6 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isTouchingGround == true && isPaused == false)
         {
+            Debug.Log(isTouchingGround);
             playerRB.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
@@ -107,7 +118,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator Die()
     {
         yield return new WaitForSeconds(deathDelay);
-        respawn?.Invoke();
+        Respawn?.Invoke();
+        Debug.Log("k pressed");
         Destroy(thisPlayer);
     }
 
@@ -119,7 +131,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Die());
             playerAnimator.SetBool("isDead", true);
             playerRB.simulated = false;
-            thisPlayer = GameObject.FindWithTag("Player");
+            thisPlayer = gameObject;
         }
     }
 
@@ -129,6 +141,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = gameObject.GetComponent<Animator>();
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         // prevent jumping before pressing play 
+        playerAnimator.SetBool("isPaused", true);
         isPaused = true;
     }
 
@@ -142,9 +155,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Debug kill
-        if (Input.GetKeyDown(KeyCode.K)) 
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            Debug.Log("k pressed");
             Dying();
         }
 
@@ -179,7 +191,8 @@ public class PlayerController : MonoBehaviour
         TurnPickup.turnaround += TurnAround;
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
-        PlaybackControl.pause += Pause;
+        //PlaybackControl.restart += Pause;
+        PlaybackControl.restart += Restart;
     }
 
     private void OnDisable()
@@ -187,7 +200,8 @@ public class PlayerController : MonoBehaviour
         TurnPickup.turnaround -= TurnAround;
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;
-        PlaybackControl.pause -= Pause; 
+        //PlaybackControl.restart -= Pause;
+        PlaybackControl.restart -= Restart;
     }
 
     //ground check so player can't double jump
