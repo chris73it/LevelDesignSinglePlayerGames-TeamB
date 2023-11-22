@@ -8,10 +8,13 @@ public class RampButton : TileButton
     
     private void Start()
     {
+     
+    }
+
+    private void Awake() {
         icon = GetComponent<Image>();
         icon.sprite = buttonSprite;
     }
-
     private void OnEnable()
     {
         BuildableCounters.rampCountChange += Counters_Change;
