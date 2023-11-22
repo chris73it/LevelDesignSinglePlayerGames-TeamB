@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13966, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: GrayboxLevel
+  m_EditorClassIdentifier: 
+  templateScene: {fileID: 102900000, guid: 1ead97ac8519b4fb0beeb4e84438a084, type: 3}
+  templateName: Graybox Template
+  description: Contains UI and settings needed to import LDTK level and continue
+  preview: {fileID: 0}
+  dependencies:
+  - dependency: {fileID: 5605177825339483694, guid: 7526646f61b7647c0a6bb77f4cab300f, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 7325645274404111737, guid: 81df9a3621fad40de9873b464a461171, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 6949512701520634290, guid: bf64ae2f26c354a799cbe5ba008d5185, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 11400000, guid: c2186337865ab4949a9a9d4b868b5fb9, type: 2}
+    instantiationMode: 1
+  - dependency: {fileID: 6778927861664753184, guid: d5d0b9a8e4a7a481da68eb3dd9bc9fe0, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 2800000, guid: ee148e281f3c41c5b4ff5f8a5afe5a6c, type: 3}
+    instantiationMode: 1
+  - dependency: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    instantiationMode: 0
+  - dependency: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+    instantiationMode: 1
+  - dependency: {fileID: 2800000, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 11400000, guid: 9df8703a845cdda4b88757c9461c6a14, type: 2}
+    instantiationMode: 1
+  - dependency: {fileID: 2800000, guid: 2fd6421f253b4ef1a19526541f9ffc0c, type: 3}
+    instantiationMode: 1
+  - dependency: {fileID: 2800000, guid: 5ccb04d8c10fb35499a6093a0bbdeed1, type: 3}
+    instantiationMode: 0
+  - dependency: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    instantiationMode: 1
+  - dependency: {fileID: 11400000, guid: e729a0c56400d7e42a7ea31285d6f200, type: 2}
+    instantiationMode: 1
+  - dependency: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    instantiationMode: 1
+  - dependency: {fileID: 7325645274404111737, guid: 6211b8d057a33490cad1acf65c4100d7, type: 3}
+    instantiationMode: 0
+  templatePipeline: {fileID: 0}
+  badge: {fileID: 0}
+  addToDefaults: 0
