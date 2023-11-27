@@ -86,8 +86,9 @@ public class TileCreator : MonoBehaviour {
         }
         if(Input.GetMouseButtonDown(1)) {
             if(CastRay() != null && isPlaying == false) {
-                DestroyItem(CastRay());
-                tileRemoved?.Invoke(currentBuildable);
+                GameObject clickedBlock = CastRay();
+                DestroyItem(clickedBlock);
+                tileRemoved?.Invoke(clickedBlock);
             }
         }
         m_pos = camera.ScreenToWorldPoint(Input.mousePosition);

@@ -41,12 +41,12 @@ public class BuildableCounters : MonoBehaviour
 
     void TileCreator_Placed(GameObject buildable)
     {
-        if (buildable.name == "Block")
+        if (IsBlock(buildable))
         {
             blockCurrentTotal -= 1;
             blockCountChange(blockCurrentTotal, blockLevelMax);
         }
-        if (buildable.name == "Ramp")
+        if (IsRamp(buildable))
         {
             rampCurrentTotal -= 1;
             rampCountChange(rampCurrentTotal, rampLevelMax);
@@ -55,7 +55,7 @@ public class BuildableCounters : MonoBehaviour
 
     void TileCreator_Removed(GameObject buildable)
     {
-        if (buildable.name == "Block")
+        if (IsBlock(buildable))
         {
             if (blockCurrentTotal <= 0)
             {
@@ -69,7 +69,7 @@ public class BuildableCounters : MonoBehaviour
             
             blockCountChange(blockCurrentTotal, blockLevelMax);
         }
-        if (buildable.name == "Ramp")
+        if (IsRamp(buildable))
         {
             if (rampCurrentTotal <= 0)
             {
@@ -83,5 +83,11 @@ public class BuildableCounters : MonoBehaviour
            
             rampCountChange(rampCurrentTotal, rampLevelMax);
         }
+    }
+    private bool IsBlock(GameObject buildable) {
+        return buildable.name == "Block" || buildable.name == "Block(Clone)";
+    }
+    private bool IsRamp(GameObject buildable) {
+        return buildable.name == "Ramp" || buildable.name == "Ramp(Clone)";
     }
 }

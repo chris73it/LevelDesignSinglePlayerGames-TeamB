@@ -24,9 +24,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float deathDelay = 2.25f;
     private bool isPaused;
 
-    private bool isIntangible = false;
-    private float intangStart = 0f;
+    private bool isGhostMode = false;
     private List<Collider2D> colliders;
+    private bool inGhostTrigger = false;
+    public Vector2 ghostVelocityScalars = new(1.5f, 1.5f);
 
     //delegate to invoke a respawn message upon death
     public static event Action Respawn;
@@ -155,7 +156,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isIntangible && Time.time - intangStart >= 0.1f) {
+        if(isGhostMode && !inGhostTrigger) {
             List<Collider2D> cols = new();
             GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), cols);
             bool inWall = false;
@@ -167,15 +168,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
             if(!inWall) {
-                GoTangible();
-            }
-        }
-
-        if(Input.GetKeyDown(KeyCode.A)) {
-            if(isIntangible) {
-                GoTangible();
-            } else {
-                GoIntangible();
+                EndGhost();
             }
         }
 
@@ -212,19 +205,29 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
-
-        
     }
 
-    void GoIntangible() {
-        isIntangible = true;
+    // starts intangibility; wall checks not performed
+    public void GhostTriggerEnter() {
+        isGhostMode = true;
+        playerRB.velocity *= ghostVelocityScalars;
         playerRB.isKinematic = true;
-        intangStart = Time.time;
+        GetComponent<SpriteRenderer>().color = Color.cyan;
+        inGhostTrigger = true;
+        isWalking = false;
     }
 
-    void GoTangible() {
-        isIntangible = false;
+    // upon exiting the intangibility triger, start performing wall checks to end intangibility
+    public void GhostTriggerExit() {
+        GetComponent<SpriteRenderer>().color = Color.blue;
+        inGhostTrigger = false;
+    }
+
+    void EndGhost() {
+        isGhostMode = false;
         playerRB.isKinematic = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
+        isWalking = true;
     }
 
     //subscribing and unsubscribing from delegates in other scripts 
@@ -233,7 +236,6 @@ public class PlayerController : MonoBehaviour
         TurnPickup.turnaround += TurnAround;
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
-        //PlaybackControl.restart += Pause;
         PlaybackControl.restart += Restart;
     }
 

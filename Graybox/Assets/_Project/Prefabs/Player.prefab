@@ -127,10 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ef9ca6b4861470e9b43848ad23c7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 0.2
-  maxMoveSpeed: 3
+  playerSpeed: 0.6
+  maxMoveSpeed: 5
   jumpForce: 15
   deathDelay: 2.25
+  intangVelocityScalars: {x: 2, y: 1.1}
 --- !u!95 &4625187279442606480
 Animator:
   serializedVersion: 5
