@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockLimit: 7
   rampLimit: 12
+  jumpLimit: 8
+  directionLimit: 11
+  wallsLimit: -6

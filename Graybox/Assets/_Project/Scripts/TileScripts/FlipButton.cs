@@ -1,10 +1,8 @@
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class BlockButton : TileButton
+public class FlipButton : TileButton
 {
-    //new public static event Action<GameObject, bool> tileButtonClicked;
-
     private void Awake()
     {
         frame = GetComponent<Image>();
@@ -13,19 +11,18 @@ public class BlockButton : TileButton
 
     private void OnEnable()
     {
-        BuildableCounters.blockCountChange += Counters_Change; 
+        BuildableCounters.directionCountChange += Counters_Change;
     }
 
     private void OnDisable()
     {
-        BuildableCounters.blockCountChange -= Counters_Change; 
+        BuildableCounters.directionCountChange -= Counters_Change;
     }
 
     private void Counters_Change(int total, int max)
     {
         if (total == 0)
         {
-            frame.color = Color.gray;
             icon.color = Color.gray;
             countTMP.text = " ";
         }
@@ -33,8 +30,7 @@ public class BlockButton : TileButton
         if (total > 0)
         {
             countTMP.text = total + "/" + max;
-            frame.color = Color.white;
-            icon.color = Color.white; 
+            icon.color = Color.white;
         }
     }
 }
