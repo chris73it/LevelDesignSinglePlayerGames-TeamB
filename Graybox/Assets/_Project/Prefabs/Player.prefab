@@ -130,6 +130,8 @@ MonoBehaviour:
   playerSpeed: 0.2
   maxMoveSpeed: 3
   jumpForce: 15
+  boostSpeed: 2
+  boostDuration: 1
   deathDelay: 2.25
 --- !u!95 &4625187279442606480
 Animator:

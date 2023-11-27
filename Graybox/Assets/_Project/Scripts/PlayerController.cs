@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float maxMoveSpeed;
     [SerializeField] float jumpForce = 400f;
+    [SerializeField] float boostSpeed;
+    [SerializeField] float boostDuration;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
     private bool isPaused;
@@ -97,6 +99,19 @@ public class PlayerController : MonoBehaviour
             playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
         }
     }
+
+    public void Boost()
+    {
+        maxMoveSpeed += boostSpeed;
+        StartCoroutine(DisableBoost());
+    }
+
+    IEnumerator DisableBoost()
+    {
+        yield return new WaitForSeconds(boostDuration);
+        maxMoveSpeed -= boostSpeed;
+        currentSpeed = maxMoveSpeed;
+    }
     public void TurnAround()
     {
         switch (state)
@@ -155,6 +170,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(transform.position.y < -50)
+        {
+            Dying();
+        }
         if(isIntangible && Time.time - intangStart >= 0.1f) {
             List<Collider2D> cols = new();
             GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), cols);
@@ -179,6 +198,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+#if UNITY_EDITOR
         // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -198,6 +218,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+#endif
 
     //called every physics frame so the player keeps moving
     private void FixedUpdate()
@@ -230,6 +251,7 @@ public class PlayerController : MonoBehaviour
     //subscribing and unsubscribing from delegates in other scripts 
     private void OnEnable()
     {
+        BoostPickup.boost += Boost;
         TurnPickup.turnaround += TurnAround;
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
@@ -239,6 +261,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
+        BoostPickup.boost -= Boost;
         TurnPickup.turnaround -= TurnAround;
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;

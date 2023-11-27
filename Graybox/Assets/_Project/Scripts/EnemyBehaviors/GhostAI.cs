@@ -7,16 +7,20 @@ public class GhostAI : MonoBehaviour {
 
     public float speed;
     public float distance;
-    public bool movingRight = true;
+    [SerializeField] public Rigidbody2D GhostRB;
+    private bool startingDirection;
+    [SerializeField] public bool movingRight = true;
     private bool isActive = false;
     public Transform groundDetection;
 
 
     public void Play() {
+        GhostRB.isKinematic = false;
         isActive = true;
     }
 
     private void Start() {
+        startingDirection = movingRight;
         PlaybackControl.play += Play;
         PlayerController.Respawn += Reset;
     }
@@ -34,6 +38,8 @@ public class GhostAI : MonoBehaviour {
     }
 
     private void Reset() {
+        if (movingRight != startingDirection) { TurnAround(); }
+        GhostRB.isKinematic = true;
         isActive = false;
     }
 
