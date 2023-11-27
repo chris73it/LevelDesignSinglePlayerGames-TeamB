@@ -6,7 +6,7 @@ public class BlockButton : TileButton
 {
     //new public static event Action<GameObject, bool> tileButtonClicked;
 
-    private void Start()
+    private void Awake()
     {
         icon = GetComponent<Image>();
         icon.sprite = buttonSprite;
