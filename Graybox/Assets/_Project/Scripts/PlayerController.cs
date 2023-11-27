@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -21,7 +22,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce = 400f;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
-    private bool isPaused; 
+    private bool isPaused;
+
+    private bool isIntangible = false;
+    private float intangStart = 0f;
+    private List<Collider2D> colliders;
 
     //delegate to invoke a respawn message upon death
     public static event Action Respawn;
@@ -119,7 +124,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(deathDelay);
         Respawn?.Invoke();
-        Debug.Log("k pressed");
         Destroy(thisPlayer);
     }
 
@@ -143,11 +147,38 @@ public class PlayerController : MonoBehaviour
         // prevent jumping before pressing play 
         playerAnimator.SetBool("isPaused", true);
         isPaused = true;
+
+        colliders = new();
+        playerRB.GetAttachedColliders(colliders);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isIntangible && Time.time - intangStart >= 0.1f) {
+            List<Collider2D> cols = new();
+            GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), cols);
+            bool inWall = false;
+
+            foreach(Collider2D col in cols) {
+                if(col.tag != "Player") { // temp; figure out a way to specify only walls
+                    inWall = true;
+                    break;
+                }
+            }
+            if(!inWall) {
+                GoTangible();
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.A)) {
+            if(isIntangible) {
+                GoTangible();
+            } else {
+                GoIntangible();
+            }
+        }
+
         // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -183,6 +214,17 @@ public class PlayerController : MonoBehaviour
         }
 
         
+    }
+
+    void GoIntangible() {
+        isIntangible = true;
+        playerRB.isKinematic = true;
+        intangStart = Time.time;
+    }
+
+    void GoTangible() {
+        isIntangible = false;
+        playerRB.isKinematic = false;
     }
 
     //subscribing and unsubscribing from delegates in other scripts 
