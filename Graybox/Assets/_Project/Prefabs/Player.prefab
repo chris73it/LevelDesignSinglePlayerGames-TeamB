@@ -131,7 +131,7 @@ MonoBehaviour:
   maxMoveSpeed: 5
   jumpForce: 15
   deathDelay: 2.25
-  intangVelocityScalars: {x: 2, y: 1.1}
+  ghostVelocityScalars: {x: 1.5, y: 1.5}
 --- !u!95 &4625187279442606480
 Animator:
   serializedVersion: 5
