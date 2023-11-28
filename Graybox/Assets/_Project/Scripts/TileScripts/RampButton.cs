@@ -20,7 +20,7 @@ public class RampButton : TileButton
 
     private void Counters_Change(int total, int max)
     {
-        if (total == 0)
+        if (total <= 0)
         {
             icon.color = Color.gray;
             frame.color = Color.gray;

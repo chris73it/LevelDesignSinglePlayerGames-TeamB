@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8804624819218153928}
   - component: {fileID: 2731766309651891917}
   - component: {fileID: 292828720607627720}
-  - component: {fileID: 6046094298411942130}
+  - component: {fileID: 2332183184595595591}
   m_Layer: 3
   m_Name: JumpPad
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2313531585126644586
 MonoBehaviour:
@@ -134,8 +134,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6046094298411942130
-BoxCollider2D:
+--- !u!60 &2332183184595595591
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -166,7 +166,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4425}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -176,6 +176,12 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.125}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.25, y: -0.25022447}
+      - {x: -0.3881979, y: -0.37777418}
+      - {x: -0.3881979, y: -0.51064783}
+      - {x: 0.38819742, y: -0.5}
+      - {x: 0.38819742, y: -0.36180234}
+      - {x: 0.24467611, y: -0.24490047}
+  m_UseDelaunayMesh: 0

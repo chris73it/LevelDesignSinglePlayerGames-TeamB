@@ -87,8 +87,11 @@ public class TileCreator : MonoBehaviour {
         if(Input.GetMouseButtonDown(1)) {
             if(CastRay() != null && isPlaying == false) {
                 GameObject clickedBlock = CastRay();
-                DestroyItem(clickedBlock);
-                tileRemoved?.Invoke(clickedBlock);
+                if (clickedBlock.GetComponent<PlaceableTile>() != null)
+                {
+                    DestroyItem(clickedBlock);
+                    tileRemoved?.Invoke(clickedBlock);
+                }
             }
         }
         m_pos = camera.ScreenToWorldPoint(Input.mousePosition);

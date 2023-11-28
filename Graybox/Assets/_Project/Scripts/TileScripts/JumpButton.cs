@@ -21,9 +21,10 @@ public class JumpButton : TileButton
 
     private void Counters_Change(int total, int max)
     {
-        if (total == 0)
+        if (total <= 0)
         {
             icon.color = Color.gray;
+            frame.color = Color.gray;
             countTMP.text = " ";
         }
 
@@ -31,6 +32,7 @@ public class JumpButton : TileButton
         {
             countTMP.text = total + "/" + max;
             icon.color = Color.white;
+            frame.color = Color.white;
         }
     }
 }

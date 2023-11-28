@@ -23,7 +23,7 @@ public class BlockButton : TileButton
 
     private void Counters_Change(int total, int max)
     {
-        if (total == 0)
+        if (total <= 0)
         {
             frame.color = Color.gray;
             icon.color = Color.gray;

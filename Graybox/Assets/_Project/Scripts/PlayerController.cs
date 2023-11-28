@@ -109,13 +109,15 @@ public class PlayerController : MonoBehaviour
                 state = States.right;
                 break;
         }
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
     public void Jump()
     {
         if (isTouchingGround == true && isPaused == false)
         {
-            Debug.Log(isTouchingGround);
             playerRB.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
