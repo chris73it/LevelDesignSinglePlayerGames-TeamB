@@ -4,10 +4,16 @@ using UnityEngine;
 // attaches to the "turn around" pickup and makes the player turn around.
 public class TurnPickup : Pickup
 {
-    public static event Action turnaround;
-    private void OnCollisionEnter2D(Collision2D collision)
+    public static event Action<bool> turnaround;
+
+    [SerializeField] public bool rightTurn;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        turnaround?.Invoke();
-        pickup.SetActive(false);
+        if(collision.gameObject.tag == "Player" && enabled)
+        {
+            turnaround?.Invoke(rightTurn);
+            pickup.SetActive(false);
+        }
+        
     }
 }

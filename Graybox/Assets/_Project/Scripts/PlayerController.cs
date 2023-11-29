@@ -112,14 +112,14 @@ public class PlayerController : MonoBehaviour
         maxMoveSpeed -= boostSpeed;
         currentSpeed = maxMoveSpeed;
     }
-    public void TurnAround()
+    public void TurnAround(bool right)
     {
-        switch (state)
+        switch (right)
         {
-            case States.right:
+            case false:
                 state = States.left;
                 break;
-            case States.left:
+            case true:
                 state = States.right;
                 break;
         }
@@ -209,12 +209,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Dying();
-        }
-
-        // Debug turn around. We only want to actually use this with power ups.
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            TurnAround();
         }
 
     }
