@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548415d9560a24dddbef53c0236dd4cd, type: 3}
   m_Name: MS_TestLimits
   m_EditorClassIdentifier: 
-  blockLimit: 7
-  rampLimit: 12
+  blockLimit: 0
+  rampLimit: 0
+  jumpLimit: -21
+  directionLimit: 3
+  wallsLimit: 1

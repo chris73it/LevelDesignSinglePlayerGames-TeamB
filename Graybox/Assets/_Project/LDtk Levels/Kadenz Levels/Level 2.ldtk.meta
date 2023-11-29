@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 19f50ea8bed72492592f108dff66637b
+guid: cb1e5dea67ce00246b026532a78917b1
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -23,7 +23,7 @@ ScriptedImporter:
   - _key: JumpPad
     _asset: {instanceID: 0}
   - _key: PlayerSpawn
-    _asset: {instanceID: 0}
+    _asset: {fileID: 4798199218175038002, guid: 0c253d7518d1d41b583c95b5489c27c7, type: 3}
   - _key: PlayerEnd
     _asset: {instanceID: 0}
   - _key: WalkThroughWalls

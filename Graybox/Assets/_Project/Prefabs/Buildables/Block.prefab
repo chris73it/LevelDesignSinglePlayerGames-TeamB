@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4837704658325770685}
   - component: {fileID: 4018085899380507746}
   - component: {fileID: 167998364267028646}
-  - component: {fileID: 6117912284780992009}
+  - component: {fileID: 8656320889804817959}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4018085899380507746
 MonoBehaviour:
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2518345c1d7241d8a03d24f6da3b4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileBase: {fileID: 11400000, guid: e729a0c56400d7e42a7ea31285d6f200, type: 2}
+  tileBase: {fileID: -8149818261399441530, guid: f3feeb8a401a93145b09ab7ea7c16353, type: 3}
 --- !u!212 &167998364267028646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1871772964, guid: 5ccb04d8c10fb35499a6093a0bbdeed1, type: 3}
+  m_Sprite: {fileID: 457049718, guid: 5ccb04d8c10fb35499a6093a0bbdeed1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,8 +99,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &6117912284780992009
-PolygonCollider2D:
+--- !u!61 &8656320889804817959
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -141,13 +141,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.50063455, y: -0.112517715}
-      - {x: 0.49382138, y: 0.34406054}
-      - {x: -0.49251747, y: 0.32525963}
-      - {x: -0.488312, y: 0.25545847}
-      - {x: -0.49388504, y: -0.326787}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

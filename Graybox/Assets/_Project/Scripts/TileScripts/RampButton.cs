@@ -1,19 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class RampButton : TileButton
 {
-    //public event Action<GameObject, bool> tileButtonClicked;
-    
-    private void Start()
+    private void Awake()
     {
-     
-    }
-
-    private void Awake() {
-        icon = GetComponent<Image>();
-        icon.sprite = buttonSprite;
+        frame = GetComponent<Image>();
+        icon = innerImage.GetComponentInChildren<Image>();
     }
     private void OnEnable()
     {
@@ -27,9 +20,10 @@ public class RampButton : TileButton
 
     private void Counters_Change(int total, int max)
     {
-        if (total == 0)
+        if (total <= 0)
         {
             icon.color = Color.gray;
+            frame.color = Color.gray;
             countTMP.text = " ";
         }
 
@@ -37,13 +31,7 @@ public class RampButton : TileButton
         {
             countTMP.text = total + "/" + max;
             icon.color = Color.white;
+            frame.color = Color.white; 
         }
     }
-
-    /*public void PlaceModeInvoked()
-    {
-        Debug.Log("ramp invoked"); 
-        tileButtonClicked?.Invoke(itemForButton, isEmpty) ;
-    }
-    */
 }

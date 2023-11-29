@@ -4,16 +4,11 @@ using System;
 
 public class TileCreator : MonoBehaviour {
 
-    // Temporary:
-    //public TilePlacement defaultBlock;
-
     [SerializeField] Tilemap previewMap, playerMap;
     public static event Action<GameObject> tilePlaced;
     public static event Action<GameObject> tileRemoved;
 
     new Camera camera;
-
-    // bool emptyClip = false;
 
     Vector2 m_pos;
     Vector3Int currentGridPos;
@@ -24,6 +19,9 @@ public class TileCreator : MonoBehaviour {
     GameObject currentBuildable;
     bool blockIsEmpty;
     bool rampIsEmpty;
+    bool jumpIsEmpty;
+    bool directionIsEmpty;
+    bool ghostIsEmpty;
 
     private bool isPlaying = false;
 
@@ -43,24 +41,26 @@ public class TileCreator : MonoBehaviour {
 
     private void OnEnable() {
         TileButton.tileButtonClicked += HandleTileClick;
-        //TileButton.noMoreTiles += Empty;
-        //TileButton.tilesReplinished += Restock;
         PlaybackControl.play += Shutdown;
         PlaybackControl.restart += Restart;
         PlayerController.Respawn += Restart;
         BuildableCounters.blockCountChange += BlockCheck;
         BuildableCounters.rampCountChange += RampCheck;
+        BuildableCounters.jumpCountChange += JumpCheck;
+        BuildableCounters.directionCountChange += DirectionCheck;
+        BuildableCounters.wallsCountChange += GhostCheck;
     }
 
     private void OnDisable() {
         TileButton.tileButtonClicked -= HandleTileClick;
-        //TileButton.noMoreTiles -= Empty;
-        //TileButton.tilesReplinished -= Restock;
         PlaybackControl.play -= Shutdown;
         PlaybackControl.restart -= Shutdown;
         PlayerController.Respawn -= Restart;
-        BuildableCounters.rampCountChange += RampCheck;
-        BuildableCounters.blockCountChange += BlockCheck;
+        BuildableCounters.rampCountChange -= RampCheck;
+        BuildableCounters.blockCountChange -= BlockCheck;
+        BuildableCounters.jumpCountChange -= JumpCheck;
+        BuildableCounters.directionCountChange -= DirectionCheck;
+        BuildableCounters.wallsCountChange -= GhostCheck;
     }
 
     private void Update() {
@@ -86,8 +86,12 @@ public class TileCreator : MonoBehaviour {
         }
         if(Input.GetMouseButtonDown(1)) {
             if(CastRay() != null && isPlaying == false) {
-                DestroyItem(CastRay());
-                tileRemoved?.Invoke(currentBuildable);
+                GameObject clickedBlock = CastRay();
+                if (clickedBlock.GetComponent<PlaceableTile>() != null)
+                {
+                    DestroyItem(clickedBlock);
+                    tileRemoved?.Invoke(clickedBlock);
+                }
             }
         }
         m_pos = camera.ScreenToWorldPoint(Input.mousePosition);
@@ -113,6 +117,18 @@ public class TileCreator : MonoBehaviour {
             Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
         }
         if(currentBuildable.name == "Ramp" && !rampIsEmpty) {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
+        if (currentBuildable.name == "JumpPad" && !jumpIsEmpty)
+        {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
+        if (currentBuildable.name == "Flipper"  && !directionIsEmpty)
+        {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
+        if (currentBuildable.name == "GhostMode" && !ghostIsEmpty)
+        {
             Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
         }
     }
@@ -160,6 +176,42 @@ public class TileCreator : MonoBehaviour {
         }
         if(total >= 1) {
             blockIsEmpty = false;
+        }
+    }
+
+    void JumpCheck(int total, int max)
+    {
+        if (total == 0)
+        {
+            jumpIsEmpty = true;
+        }
+        if (total >= 1)
+        {
+            jumpIsEmpty = false;
+        }
+    }
+
+    void DirectionCheck(int total, int max)
+    {
+        if (total == 0)
+        {
+            directionIsEmpty = true;
+        }
+        if (total >= 1)
+        {
+            directionIsEmpty = false;
+        }
+    }
+
+    void GhostCheck(int total, int max)
+    {
+        if (total == 0)
+        {
+            ghostIsEmpty = true;
+        }
+        if (total >= 1)
+        {
+            ghostIsEmpty = false;
         }
     }
 }
