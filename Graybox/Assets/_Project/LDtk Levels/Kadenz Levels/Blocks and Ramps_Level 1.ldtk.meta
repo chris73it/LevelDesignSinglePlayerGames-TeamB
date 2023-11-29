@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 044d52acf793bcb4fbde1b0aa4e2f410
+guid: 6fcb593f9ff016a49b2ded07f18049c8
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -9,7 +9,7 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
   _reimportOnDependencyChange: 1
-  _jsonFile: {fileID: -164016180542632921, guid: cab98b93df42c4ef4b05a043f0d4dd0c, type: 3}
+  _jsonFile: {fileID: -164016180542632921, guid: 6fcb593f9ff016a49b2ded07f18049c8, type: 3}
   _pixelsPerUnit: 8
   _customLevelPrefab: {instanceID: 0}
   _deparentInRuntime: 0
@@ -19,7 +19,7 @@ ScriptedImporter:
   _createBackgroundColor: 1
   _createLevelBoundsTrigger: 0
   _intGridValues:
-  - _key: AutoTile_1
+  - _key: Floor_1
     _asset: {instanceID: 0}
   _entities:
   - _key: PlayerSpawn
@@ -29,6 +29,12 @@ ScriptedImporter:
   - _key: DeathBox
     _asset: {instanceID: 0}
   - _key: JumpPad
+    _asset: {instanceID: 0}
+  - _key: TurnAround
+    _asset: {instanceID: 0}
+  - _key: SpeedBoost
+    _asset: {instanceID: 0}
+  - _key: Vent
     _asset: {instanceID: 0}
   _enumGenerate: 0
   _enumPath: 
