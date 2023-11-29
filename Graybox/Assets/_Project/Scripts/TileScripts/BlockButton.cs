@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class BlockButton : TileButton
 {
@@ -8,8 +7,8 @@ public class BlockButton : TileButton
 
     private void Awake()
     {
-        icon = GetComponent<Image>();
-        icon.sprite = buttonSprite;
+        frame = GetComponent<Image>();
+        icon = innerImage.GetComponentInChildren<Image>();
     }
 
     private void OnEnable()
@@ -24,8 +23,9 @@ public class BlockButton : TileButton
 
     private void Counters_Change(int total, int max)
     {
-        if (total == 0)
+        if (total <= 0)
         {
+            frame.color = Color.gray;
             icon.color = Color.gray;
             countTMP.text = " ";
         }
@@ -33,9 +33,8 @@ public class BlockButton : TileButton
         if (total > 0)
         {
             countTMP.text = total + "/" + max;
-            icon.color = Color.white;
+            frame.color = Color.white;
+            icon.color = Color.white; 
         }
     }
-
-   
 }

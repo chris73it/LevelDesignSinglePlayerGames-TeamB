@@ -20,15 +20,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float maxMoveSpeed;
     [SerializeField] float jumpForce = 400f;
-    [SerializeField] float boostSpeed;
-    [SerializeField] float boostDuration;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
     private bool isPaused;
 
-    private bool isIntangible = false;
-    private float intangStart = 0f;
+    private bool isGhostMode = false;
     private List<Collider2D> colliders;
+    private bool inGhostTrigger = false;
+    public Vector2 ghostVelocityScalars = new(1.5f, 1.5f);
 
     //delegate to invoke a respawn message upon death
     public static event Action Respawn;
@@ -99,37 +98,26 @@ public class PlayerController : MonoBehaviour
             playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
         }
     }
-
-    public void Boost()
+    public void TurnAround()
     {
-        maxMoveSpeed += boostSpeed;
-        StartCoroutine(DisableBoost());
-    }
-
-    IEnumerator DisableBoost()
-    {
-        yield return new WaitForSeconds(boostDuration);
-        maxMoveSpeed -= boostSpeed;
-        currentSpeed = maxMoveSpeed;
-    }
-    public void TurnAround(bool right)
-    {
-        switch (right)
+        switch (state)
         {
-            case false:
+            case States.right:
                 state = States.left;
                 break;
-            case true:
+            case States.left:
                 state = States.right;
                 break;
         }
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
     public void Jump()
     {
         if (isTouchingGround == true && isPaused == false)
         {
-            Debug.Log(isTouchingGround);
             playerRB.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
@@ -170,11 +158,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y < -50)
-        {
-            Dying();
-        }
-        if(isIntangible && Time.time - intangStart >= 0.1f) {
+        if(isGhostMode && !inGhostTrigger) {
             List<Collider2D> cols = new();
             GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), cols);
             bool inWall = false;
@@ -186,19 +170,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
             if(!inWall) {
-                GoTangible();
+                EndGhost();
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.A)) {
-            if(isIntangible) {
-                GoTangible();
-            } else {
-                GoIntangible();
-            }
-        }
-
-#if UNITY_EDITOR
         // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -211,8 +186,13 @@ public class PlayerController : MonoBehaviour
             Dying();
         }
 
+        // Debug turn around. We only want to actually use this with power ups.
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TurnAround();
+        }
+
     }
-#endif
 
     //called every physics frame so the player keeps moving
     private void FixedUpdate()
@@ -227,35 +207,42 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
-
-        
     }
 
-    void GoIntangible() {
-        isIntangible = true;
+    // starts intangibility; wall checks not performed
+    public void GhostTriggerEnter() {
+        isGhostMode = true;
+        playerRB.velocity *= ghostVelocityScalars;
         playerRB.isKinematic = true;
-        intangStart = Time.time;
+        GetComponent<SpriteRenderer>().color = Color.cyan;
+        inGhostTrigger = true;
+        isWalking = false;
     }
 
-    void GoTangible() {
-        isIntangible = false;
+    // upon exiting the intangibility triger, start performing wall checks to end intangibility
+    public void GhostTriggerExit() {
+        GetComponent<SpriteRenderer>().color = Color.blue;
+        inGhostTrigger = false;
+    }
+
+    void EndGhost() {
+        isGhostMode = false;
         playerRB.isKinematic = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
+        isWalking = true;
     }
 
     //subscribing and unsubscribing from delegates in other scripts 
     private void OnEnable()
     {
-        BoostPickup.boost += Boost;
         TurnPickup.turnaround += TurnAround;
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
-        //PlaybackControl.restart += Pause;
         PlaybackControl.restart += Restart;
     }
 
     private void OnDisable()
     {
-        BoostPickup.boost -= Boost;
         TurnPickup.turnaround -= TurnAround;
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;
