@@ -113,9 +113,9 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isTouchingGround == true && isPaused == false)
+        if (isPaused == false)
         {
-            Debug.Log(isTouchingGround);
+            playerRB.velocity = new(playerRB.velocity.x, 0);
             playerRB.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
