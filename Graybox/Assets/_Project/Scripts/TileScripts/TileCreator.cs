@@ -1,44 +1,72 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System;
 
 public class TileCreator : MonoBehaviour {
 
-    // Temporary:
-    public TilePlacement defaultBlock;
-
     [SerializeField] Tilemap previewMap, playerMap;
+    public static event Action<GameObject> tilePlaced;
+    public static event Action<GameObject> tileRemoved;
 
-    Camera camera;
+    new Camera camera;
 
     Vector2 m_pos;
     Vector3Int currentGridPos;
     Vector3Int prevGridPos;
+    Vector3 offset;
 
-    TileBase tileBase;
-    TilePlacement currentBlock;
+    TileBase currentTileBase;
+    GameObject currentBuildable;
+    bool blockIsEmpty;
+    bool rampIsEmpty;
+    bool jumpIsEmpty;
+    bool directionIsEmpty;
+    bool ghostIsEmpty;
 
-    private TilePlacement CurrentBlock {
+    private bool isPlaying = false;
+
+    private GameObject CurrentBuildable {
         set {
-            currentBlock = value;
-            tileBase = currentBlock != null ? currentBlock.TileBase : null;
+            currentBuildable = value;
             UpdatePreview();
         }
     }
 
     protected void Awake() {
         camera = Camera.main;
-        CurrentBlock = defaultBlock;
+        CurrentBuildable = null;
+        offset.x = 0.5f;
+        offset.y = 0.5f;
     }
 
     private void OnEnable() {
+        TileButton.tileButtonClicked += HandleTileClick;
+        PlaybackControl.play += Shutdown;
+        PlaybackControl.restart += Restart;
+        PlayerController.Respawn += Restart;
+        BuildableCounters.blockCountChange += BlockCheck;
+        BuildableCounters.rampCountChange += RampCheck;
+        BuildableCounters.jumpCountChange += JumpCheck;
+        BuildableCounters.directionCountChange += DirectionCheck;
+        BuildableCounters.wallsCountChange += GhostCheck;
     }
 
     private void OnDisable() {
+        TileButton.tileButtonClicked -= HandleTileClick;
+        PlaybackControl.play -= Shutdown;
+        PlaybackControl.restart -= Shutdown;
+        PlayerController.Respawn -= Restart;
+        BuildableCounters.rampCountChange -= RampCheck;
+        BuildableCounters.blockCountChange -= BlockCheck;
+        BuildableCounters.jumpCountChange -= JumpCheck;
+        BuildableCounters.directionCountChange -= DirectionCheck;
+        BuildableCounters.wallsCountChange -= GhostCheck;
     }
+
     private void Update() {
-        if(currentBlock != null) {
+        if(currentBuildable != null && isPlaying == false) {
             Vector3 pos = camera.ScreenToWorldPoint(m_pos);
-            Vector3Int gridPos = previewMap.WorldToCell(pos);
+            Vector3Int gridPos = previewMap.WorldToCell(m_pos);
             if(gridPos != currentGridPos) {
                 prevGridPos = currentGridPos;
                 currentGridPos = gridPos;
@@ -47,21 +75,143 @@ public class TileCreator : MonoBehaviour {
         }
 
         if(Input.GetMouseButtonDown(0)) {
-            if(currentBlock != null)
-                DrawItem(tileBase);
+            if(currentBuildable != null && isPlaying == false && OnMap(m_pos)) {
+                if(CastRay() == null) {
+                    DrawItem();
+                    tilePlaced?.Invoke(currentBuildable);
+                } else {
+                    return;
+                }
+            }
         }
         if(Input.GetMouseButtonDown(1)) {
-            DrawItem(null);
+            if(CastRay() != null && isPlaying == false) {
+                GameObject clickedBlock = CastRay();
+                if (clickedBlock.GetComponent<PlaceableTile>() != null)
+                {
+                    DestroyItem(clickedBlock);
+                    tileRemoved?.Invoke(clickedBlock);
+                }
+            }
         }
-        m_pos = Input.mousePosition;
+        m_pos = camera.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private bool OnMap(Vector3 position) {
+        float width = transform.localScale.x;
+        float height = transform.localScale.y;
+        Vector2 diff = position - transform.position;
+        return Mathf.Abs(diff.x) <= width / 2 && Mathf.Abs(diff.y) <= height / 2;
     }
 
     private void UpdatePreview() {
         previewMap.SetTile(prevGridPos, null);
-        previewMap.SetTile(currentGridPos, tileBase);
+        if(OnMap(m_pos)) {
+            previewMap.SetTile(currentGridPos, currentTileBase);
+        }
     }
 
-    private void DrawItem(TileBase item) {
-        playerMap.SetTile(currentGridPos, item);
+    private void DrawItem() {
+        Debug.Log(blockIsEmpty);
+        if(currentBuildable.name == "Block" && !blockIsEmpty) {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
+        if(currentBuildable.name == "Ramp" && !rampIsEmpty) {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
+        if (currentBuildable.name == "JumpPad" && !jumpIsEmpty)
+        {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
+        if (currentBuildable.name == "Flipper"  && !directionIsEmpty)
+        {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
+        if (currentBuildable.name == "GhostMode" && !ghostIsEmpty)
+        {
+            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        }
+    }
+
+    private void DestroyItem(GameObject clickedBlock) {
+        Destroy(clickedBlock);
+    }
+
+    GameObject CastRay() {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+        if(hit.collider != null) {
+            return hit.collider.gameObject;
+        } else {
+            return null;
+        }
+    }
+
+    private void HandleTileClick(GameObject buildablePrefab) {
+        currentBuildable = buildablePrefab;
+        currentTileBase = buildablePrefab.GetComponent<PlaceableTile>().tileBase;
+    }
+
+    void Shutdown() {
+        isPlaying = true;
+    }
+
+    void Restart() {
+        isPlaying = false;
+    }
+
+    void RampCheck(int total, int max) {
+        if(total == 0) {
+            rampIsEmpty = true;
+        }
+        if(total >= 1) {
+            rampIsEmpty = false;
+        }
+
+    }
+
+    void BlockCheck(int total, int max) {
+        if(total == 0) {
+            blockIsEmpty = true;
+        }
+        if(total >= 1) {
+            blockIsEmpty = false;
+        }
+    }
+
+    void JumpCheck(int total, int max)
+    {
+        if (total == 0)
+        {
+            jumpIsEmpty = true;
+        }
+        if (total >= 1)
+        {
+            jumpIsEmpty = false;
+        }
+    }
+
+    void DirectionCheck(int total, int max)
+    {
+        if (total == 0)
+        {
+            directionIsEmpty = true;
+        }
+        if (total >= 1)
+        {
+            directionIsEmpty = false;
+        }
+    }
+
+    void GhostCheck(int total, int max)
+    {
+        if (total == 0)
+        {
+            ghostIsEmpty = true;
+        }
+        if (total >= 1)
+        {
+            ghostIsEmpty = false;
+        }
     }
 }

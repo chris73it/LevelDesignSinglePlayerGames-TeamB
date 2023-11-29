@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,43 +12,106 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     //logical bools
     private bool isWalking = false;
-    private bool isPaused = false;
-    private bool isTouchingGround = true;
+    //private bool isPaused = false;
+    private bool isTouchingGround = false;
     private bool onFirstCollision = false;
     //inspector editable variables for jump and movement speed
+    private float currentSpeed;
     [SerializeField] float playerSpeed;
+    [SerializeField] float maxMoveSpeed;
     [SerializeField] float jumpForce = 400f;
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
+    private bool isPaused;
+
+    private bool isGhostMode = false;
+    private List<Collider2D> colliders;
+    private bool inGhostTrigger = false;
+    public Vector2 ghostVelocityScalars = new(1.5f, 1.5f);
 
     //delegate to invoke a respawn message upon death
-    public static event Action respawn;
+    public static event Action Respawn;
+
+    enum States
+    {
+        right = 0,
+        left
+    }
+
+    States state = States.right;
 
     //animation controls 
     public void Play()
     {
-        playerAnimator.SetBool("isWalking", true);
-        isWalking = true;
-        playerAnimator.SetBool("isPaused", false);
-        isPaused = false;
+        if (!onFirstCollision)
+        {
+            playerAnimator.SetBool("isWalking", true);
+            isWalking = true;
+            // Simulate physics again when play button is pressed.
+            playerRB.simulated = true;
+            playerAnimator.SetBool("isPaused", false);
+            isPaused = false;
+        }
     }
 
+    public void Restart()
+    {
+        Destroy(gameObject);
+        Respawn?.Invoke();
+    }
+
+    /* commented out Ethan's changes here since we've shifted from Pause to Restart
     public void Pause()
     {
-        playerAnimator.SetBool("isPaused", true);
-        isPaused = true;
+        if (!onFirstCollision)
+        {
+            playerAnimator.SetBool("isPaused", true);
+            // We don't want to simulate physics while the game is paused because that would make it possible for the character
+            // to keep falling when paused.
+            playerRB.simulated = false;
+            isPaused = true;
+        }
     }
+    */
 
     //Movement methods
-    public void MoveRight()
-    {
-        if (isWalking == true && isPaused == false)
-        {
 
-            //might be better to rewrite as "rb.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);"
-            //not sure if the translate method here is affected by drag and other physics attributes of the ground (might want slick ice ground or sticky mud ground). worth investigating?
-            transform.Translate(Vector3.right * playerSpeed);
+    public void Accelerate(float factor)
+    {
+        currentSpeed += factor;
+    }
+    
+    // Moved the MoveRight function into one function and made it bidirectional.
+    public void Move(float speed)
+    {
+        if (isWalking == true)
+        {
+            //transform.Translate(Vector3.right * playerSpeed);
+
+            // By adding a force rather than simply translating the player character's movement, we can make it possible to
+            // simulate certain surfaces such as ice or mud, as well as make movement more realistic overall.
+            if ((currentSpeed < maxMoveSpeed && state == States.right) || (currentSpeed > -(maxMoveSpeed) && state == States.left))
+            {
+                Accelerate(speed);
+                //playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);  
+            }
+            playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
         }
+    }
+    public void TurnAround()
+    {
+        switch (state)
+        {
+            case States.right:
+                state = States.left;
+                break;
+            case States.left:
+                state = States.right;
+                break;
+        }
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
     public void Jump()
@@ -61,8 +126,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Die()
     {
         yield return new WaitForSeconds(deathDelay);
-        respawn?.Invoke();
-        Debug.Log("k pressed");
+        Respawn?.Invoke();
         Destroy(thisPlayer);
     }
 
@@ -74,7 +138,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Die());
             playerAnimator.SetBool("isDead", true);
             playerRB.simulated = false;
-            thisPlayer = GameObject.FindWithTag("Player");
+            thisPlayer = gameObject;
         }
     }
 
@@ -84,12 +148,32 @@ public class PlayerController : MonoBehaviour
         playerAnimator = gameObject.GetComponent<Animator>();
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         // prevent jumping before pressing play 
+        playerAnimator.SetBool("isPaused", true);
         isPaused = true;
+
+        colliders = new();
+        playerRB.GetAttachedColliders(colliders);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isGhostMode && !inGhostTrigger) {
+            List<Collider2D> cols = new();
+            GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), cols);
+            bool inWall = false;
+
+            foreach(Collider2D col in cols) {
+                if(col.tag != "Player") { // temp; figure out a way to specify only walls
+                    inWall = true;
+                    break;
+                }
+            }
+            if(!inWall) {
+                EndGhost();
+            }
+        }
+
         // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -101,27 +185,69 @@ public class PlayerController : MonoBehaviour
         {
             Dying();
         }
+
+        // Debug turn around. We only want to actually use this with power ups.
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            TurnAround();
+        }
+
     }
 
     //called every physics frame so the player keeps moving
     private void FixedUpdate()
     {
-            MoveRight();
+        switch (state) {
+            case States.right:
+                Move(playerSpeed);
+                break;
+            case States.left:
+                Move(-playerSpeed);
+                break;
+            default:
+                break;
+        }
+    }
+
+    // starts intangibility; wall checks not performed
+    public void GhostTriggerEnter() {
+        isGhostMode = true;
+        playerRB.velocity *= ghostVelocityScalars;
+        playerRB.isKinematic = true;
+        GetComponent<SpriteRenderer>().color = Color.cyan;
+        inGhostTrigger = true;
+        isWalking = false;
+    }
+
+    // upon exiting the intangibility triger, start performing wall checks to end intangibility
+    public void GhostTriggerExit() {
+        GetComponent<SpriteRenderer>().color = Color.blue;
+        inGhostTrigger = false;
+    }
+
+    void EndGhost() {
+        isGhostMode = false;
+        playerRB.isKinematic = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
+        isWalking = true;
     }
 
     //subscribing and unsubscribing from delegates in other scripts 
     private void OnEnable()
     {
+        TurnPickup.turnaround += TurnAround;
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
-        PlaybackControl.pause += Pause;
+        PlaybackControl.restart += Restart;
     }
 
     private void OnDisable()
     {
+        TurnPickup.turnaround -= TurnAround;
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;
-        PlaybackControl.pause -= Pause; 
+        //PlaybackControl.restart -= Pause;
+        PlaybackControl.restart -= Restart;
     }
 
     //ground check so player can't double jump

@@ -9,7 +9,7 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
   _reimportOnDependencyChange: 1
-  _jsonFile: {instanceID: 0}
+  _jsonFile: {fileID: -164016180542632921, guid: 19f50ea8bed72492592f108dff66637b, type: 3}
   _pixelsPerUnit: 8
   _customLevelPrefab: {instanceID: 0}
   _deparentInRuntime: 0
@@ -19,7 +19,19 @@ ScriptedImporter:
   _createBackgroundColor: 1
   _createLevelBoundsTrigger: 0
   _intGridValues: []
-  _entities: []
+  _entities:
+  - _key: JumpPad
+    _asset: {instanceID: 0}
+  - _key: PlayerSpawn
+    _asset: {fileID: 4798199218175038002, guid: 0c253d7518d1d41b583c95b5489c27c7, type: 3}
+  - _key: PlayerEnd
+    _asset: {instanceID: 0}
+  - _key: WalkThroughWalls
+    _asset: {instanceID: 0}
+  - _key: TurnAround
+    _asset: {instanceID: 0}
+  - _key: DeathBox
+    _asset: {instanceID: 0}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
