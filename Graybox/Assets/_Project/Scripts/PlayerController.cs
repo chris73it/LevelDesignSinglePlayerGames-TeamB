@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
             playerRB.simulated = true;
             playerAnimator.SetBool("isPaused", false);
             isPaused = false;
+            state = States.right;
         }
     }
 
