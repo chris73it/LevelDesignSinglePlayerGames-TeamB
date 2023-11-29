@@ -20,8 +20,8 @@ public class UrchinAI : MonoBehaviour
     }
 
     private void Reset() {
-        isFalling = false;
         rb.gravityScale = 0;
+        isFalling = false;
         anim.SetBool("Falling", false);
     }
 

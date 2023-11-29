@@ -20,6 +20,7 @@ public class GhostAI : MonoBehaviour {
     }
 
     private void Start() {
+        GhostRB.isKinematic = true;
         startingDirection = movingRight;
         PlaybackControl.play += Play;
         PlayerController.Respawn += Reset;
