@@ -87,10 +87,13 @@ public class TileCreator : MonoBehaviour {
         if(Input.GetMouseButtonDown(1)) {
             if(CastRay() != null && isPlaying == false) {
                 GameObject clickedBlock = CastRay();
-                if (clickedBlock.GetComponent<PlaceableTile>() != null)
+                PlaceableTile tileObject;
+                if (clickedBlock.TryGetComponent<PlaceableTile>(out tileObject))
                 {
-                    DestroyItem(clickedBlock);
-                    tileRemoved?.Invoke(clickedBlock);
+                    if(tileObject.IsPlayerPlaced) {
+                        DestroyItem(clickedBlock);
+                        tileRemoved?.Invoke(clickedBlock);
+                    }
                 }
             }
         }
@@ -112,25 +115,32 @@ public class TileCreator : MonoBehaviour {
     }
 
     private void DrawItem() {
-        Debug.Log(blockIsEmpty);
+        GameObject item = InstantiateItem();
+        if(item == null) {
+            Debug.Log("empty item!!");
+            return;
+        }
+
+        item.GetComponent<PlaceableTile>().IsPlayerPlaced = true;
+    }
+
+    private GameObject InstantiateItem() {
         if(currentBuildable.name == "Block" && !blockIsEmpty) {
-            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+            return Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
         }
         if(currentBuildable.name == "Ramp" && !rampIsEmpty) {
-            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+            return Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
         }
-        if (currentBuildable.name == "JumpPad" && !jumpIsEmpty)
-        {
-            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        if(currentBuildable.name == "JumpPad" && !jumpIsEmpty) {
+            return Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
         }
-        if (currentBuildable.name == "Flipper"  && !directionIsEmpty)
-        {
-            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        if(currentBuildable.name == "Flipper" && !directionIsEmpty) {
+            return Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
         }
-        if (currentBuildable.name == "GhostMode" && !ghostIsEmpty)
-        {
-            Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
+        if(currentBuildable.name == "GhostMode" && !ghostIsEmpty) {
+            return Instantiate(currentBuildable, currentGridPos + offset, Quaternion.identity);
         }
+        return null;
     }
 
     private void DestroyItem(GameObject clickedBlock) {
