@@ -21,15 +21,15 @@ ScriptedImporter:
   _intGridValues: []
   _entities:
   - _key: PlayerSpawn
-    _asset: {instanceID: 0}
+    _asset: {fileID: 4798199218175038002, guid: 0c253d7518d1d41b583c95b5489c27c7, type: 3}
   - _key: PlayerEnd
-    _asset: {instanceID: 0}
+    _asset: {fileID: 8322118012555686054, guid: 535f765f86cb46b46afcbdda8682dff4, type: 3}
   - _key: JumpPad
-    _asset: {instanceID: 0}
+    _asset: {fileID: 5774127614728844608, guid: 563f2eaad6d6a3748b6391be983268fd, type: 3}
   - _key: TurnAround
-    _asset: {instanceID: 0}
+    _asset: {fileID: 1816864706892295097, guid: 121ac4463018f4602a54404b45878f3c, type: 3}
   - _key: DeathBox
-    _asset: {instanceID: 0}
+    _asset: {fileID: 2984366198454415400, guid: c74909ebab0d64814852c8a2a09121a6, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
