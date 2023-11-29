@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2615790121072164820}
   - component: {fileID: 5539119474983735813}
   - component: {fileID: 6604474231211129693}
+  - component: {fileID: -8003378427512553736}
   m_Layer: 0
   m_Name: TurnPickupLeft
   m_TagString: Powerup
@@ -98,8 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f135a3c40f524954595a5be93f9f9477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickup: {fileID: 5680529547787181555}
-  rightTurn: 0
+  right: 0
 --- !u!61 &6604474231211129693
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,3 +145,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-8003378427512553736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680529547787181555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2518345c1d7241d8a03d24f6da3b4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileBase: {fileID: 3812394987828138277, guid: a1cb107632ad50345872287b1ed8e44c, type: 3}

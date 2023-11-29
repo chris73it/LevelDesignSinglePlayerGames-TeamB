@@ -5,10 +5,15 @@ using UnityEngine;
 public class TurnPickup : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static event Action turnaround;
+    public static event Action<bool> turnaround;
+    [SerializeField] public bool right;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        turnaround?.Invoke();
-        //pickup.SetActive(false);
+        if (collision.gameObject.tag == "Player" && enabled)
+        {
+            turnaround?.Invoke(right);
+            //pickup.SetActive(false);
+        }
+
     }
 }

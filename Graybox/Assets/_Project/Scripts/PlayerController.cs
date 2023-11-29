@@ -98,14 +98,14 @@ public class PlayerController : MonoBehaviour
             playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
         }
     }
-    public void TurnAround()
+    public void TurnAround(bool right)
     {
-        switch (state)
+        switch (right)
         {
-            case States.right:
+            case false:
                 state = States.left;
                 break;
-            case States.left:
+            case true:
                 state = States.right;
                 break;
         }
@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+#if UNITY_EDITOR
         // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -185,12 +186,12 @@ public class PlayerController : MonoBehaviour
         {
             Dying();
         }
-
-        // Debug turn around. We only want to actually use this with power ups.
-        if (Input.GetKeyDown(KeyCode.L))
+#endif
+        //!! BROKEN !! Debug turn around. We only want to actually use this with power ups.
+        /*if (Input.GetKeyDown(KeyCode.L))
         {
             TurnAround();
-        }
+        }*/
 
     }
 
