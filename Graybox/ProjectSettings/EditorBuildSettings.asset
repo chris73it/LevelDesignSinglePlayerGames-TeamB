@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Project/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Project/Scenes/EthanTesting.unity
     guid: edcedd9ac76b39c4fafee7dc152fd1d4
+  - enabled: 1
+    path: Assets/_Project/ExpirementalScenes/GhostModeTest.unity
+    guid: 2abbaf656b8d24d43a61745c4119d920
   m_configObjects: {}
