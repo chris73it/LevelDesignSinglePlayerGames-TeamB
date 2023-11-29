@@ -23,7 +23,7 @@ public class PlayerSpawner : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(playerCharacter, transform.root.position, Quaternion.identity.normalized);
+        Instantiate(playerCharacter, transform.position, Quaternion.identity.normalized);
     }
 
 }

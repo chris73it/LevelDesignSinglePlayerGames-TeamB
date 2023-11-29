@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.Collections;
 
 // invokes play and pause events when UI (PlayBT and PauseBT on PlayControsl prefab) is...
 // clicked so play and pause state can multi-cast if needed

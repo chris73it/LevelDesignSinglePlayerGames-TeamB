@@ -1,21 +1,22 @@
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class RampButton : TileButton
+public class FlipButton : TileButton
 {
     private void Awake()
     {
         frame = GetComponent<Image>();
         icon = innerImage.GetComponentInChildren<Image>();
     }
+
     private void OnEnable()
     {
-        BuildableCounters.rampCountChange += Counters_Change;
+        BuildableCounters.directionCountChange += Counters_Change;
     }
 
     private void OnDisable()
     {
-        BuildableCounters.rampCountChange -= Counters_Change;
+        BuildableCounters.directionCountChange -= Counters_Change;
     }
 
     private void Counters_Change(int total, int max)
@@ -31,7 +32,7 @@ public class RampButton : TileButton
         {
             countTMP.text = total + "/" + max;
             icon.color = Color.white;
-            frame.color = Color.white; 
+            frame.color = Color.white;
         }
     }
 }
