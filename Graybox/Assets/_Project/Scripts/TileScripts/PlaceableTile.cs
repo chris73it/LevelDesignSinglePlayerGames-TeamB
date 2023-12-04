@@ -11,7 +11,9 @@ public enum TagCategory
     Powerup
 }
 
+
 public class PlaceableTile : MonoBehaviour
 {
+    public bool IsPlayerPlaced = false;
     public TileBase tileBase;
 }

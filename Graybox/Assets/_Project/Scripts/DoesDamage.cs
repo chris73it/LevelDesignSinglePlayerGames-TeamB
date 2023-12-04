@@ -12,7 +12,7 @@ public class DoesDamage : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player" && enabled) {
             damage?.Invoke();
-            Debug.Log(gameObject.name + " did damage");
+            //Debug.Log(gameObject.name + " did damage");
         }
     }
 

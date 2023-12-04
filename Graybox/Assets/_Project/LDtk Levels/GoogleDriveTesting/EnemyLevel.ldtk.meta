@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7461bb13955a3f54bb4f7209ad4ff5b3
+guid: cfbbe90c2edb0df4fa709d49d2443538
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -9,7 +9,7 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
   _reimportOnDependencyChange: 1
-  _jsonFile: {fileID: -164016180542632921, guid: 7461bb13955a3f54bb4f7209ad4ff5b3, type: 3}
+  _jsonFile: {instanceID: 0}
   _pixelsPerUnit: 8
   _customLevelPrefab: {instanceID: 0}
   _deparentInRuntime: 0
@@ -19,9 +19,7 @@ ScriptedImporter:
   _createBackgroundColor: 1
   _createLevelBoundsTrigger: 0
   _intGridValues: []
-  _entities:
-  - _key: Spikes
-    _asset: {fileID: 7325645274404111737, guid: 81df9a3621fad40de9873b464a461171, type: 3}
+  _entities: []
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
