@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 28aa959abebd85e47907a75118f98225
+guid: 91a59d0643de59c4388c78483a53e118
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -9,7 +9,7 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
   _reimportOnDependencyChange: 1
-  _jsonFile: {fileID: -164016180542632921, guid: 28aa959abebd85e47907a75118f98225, type: 3}
+  _jsonFile: {fileID: -164016180542632921, guid: 91a59d0643de59c4388c78483a53e118, type: 3}
   _pixelsPerUnit: 8
   _customLevelPrefab: {instanceID: 0}
   _deparentInRuntime: 0
@@ -35,6 +35,8 @@ ScriptedImporter:
   - _key: SpeedBoost
     _asset: {instanceID: 0}
   - _key: Vent
+    _asset: {instanceID: 0}
+  - _key: Ramp
     _asset: {instanceID: 0}
   _enumGenerate: 0
   _enumPath: 
