@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 548415d9560a24dddbef53c0236dd4cd, type: 3}
-  m_Name: Level3Limits
+  m_Name: Level4Limits
   m_EditorClassIdentifier: 
-  blockLimit: 4
+  blockLimit: 0
   rampLimit: 0
   jumpLimit: 3
-  directionLimit: 2
+  directionLimit: 0
   wallsLimit: 0
