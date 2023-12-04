@@ -1,0 +1,30 @@
+{
+  "Rects": null,
+  "Def": {
+    "__cHei": 37,
+    "__cWid": 42,
+    "cachedPixelData": null,
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "Graybox_full_tileset",
+    "padding": 0,
+    "pxHei": 296,
+    "pxWid": 336,
+    "relPath": "../../Art/graybox_full_tileset.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 0,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 8,
+    "uid": 641
+  }
+}

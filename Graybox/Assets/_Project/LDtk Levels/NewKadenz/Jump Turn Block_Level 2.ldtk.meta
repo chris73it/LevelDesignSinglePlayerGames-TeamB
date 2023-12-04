@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 28aa959abebd85e47907a75118f98225
+guid: dd7781dd7ee6b3a499028cb220ca73b7
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -9,14 +9,14 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
   _reimportOnDependencyChange: 1
-  _jsonFile: {fileID: -164016180542632921, guid: 28aa959abebd85e47907a75118f98225, type: 3}
+  _jsonFile: {fileID: -164016180542632921, guid: dd7781dd7ee6b3a499028cb220ca73b7, type: 3}
   _pixelsPerUnit: 8
   _customLevelPrefab: {instanceID: 0}
   _deparentInRuntime: 0
   _intGridValueColorsVisible: 0
   _useCompositeCollider: 1
   _geometryType: 0
-  _createBackgroundColor: 1
+  _createBackgroundColor: 0
   _createLevelBoundsTrigger: 0
   _intGridValues:
   - _key: Floor_1
