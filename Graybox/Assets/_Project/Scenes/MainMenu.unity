@@ -796,7 +796,7 @@ GameObject:
   - component: {fileID: 2062197406}
   - component: {fileID: 2062197405}
   m_Layer: 5
-  m_Name: Level Button (1)
+  m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -870,8 +870,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2089154635}
         m_TargetAssemblyTypeName: LevelSelectionManager, Runtime
-        m_MethodName: ChangeLevel
-        m_Mode: 5
+        m_MethodName: QuitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1647,7 +1647,7 @@ GameObject:
   - component: {fileID: 8931755631099633232}
   - component: {fileID: 2096125913041082161}
   m_Layer: 5
-  m_Name: Level Button
+  m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
