@@ -463,13 +463,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level2
       objectReference: {fileID: 0}
+    - target: {fileID: 5591096833380007574, guid: b1b45fe1c33bef948a3b613ac1ba0f5a, type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5616460344108929511, guid: b1b45fe1c33bef948a3b613ac1ba0f5a, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5616460344108929511, guid: b1b45fe1c33bef948a3b613ac1ba0f5a, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5616460344108929511, guid: b1b45fe1c33bef948a3b613ac1ba0f5a, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
