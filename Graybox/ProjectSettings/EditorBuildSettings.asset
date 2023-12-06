@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/_Project/ExpirementalScenes/LevelSelectUITest.unity
     guid: e13ce25f6491526429e27d519ab9fb86
   - enabled: 1
+    path: Assets/_Project/Scenes/Credits.unity
+    guid: 69441060a9c68a94fb96e8fdfbccebf8
+  - enabled: 1
     path: Assets/_Project/Scenes/Final Levels/FinalLevel1.unity
     guid: 4a726a17645675d418a31c8128ce227f
   - enabled: 1
