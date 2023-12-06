@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1911365301797597937, guid: 6869f14d7b0fb8e478b338bb4c52f391, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 3970301671237376742, guid: 6869f14d7b0fb8e478b338bb4c52f391, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 1

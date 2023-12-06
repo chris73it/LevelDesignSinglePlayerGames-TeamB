@@ -4824,7 +4824,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6356407379820845979}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089154635}
+        m_TargetAssemblyTypeName: LevelSelectionManager, Runtime
+        m_MethodName: ChangeLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: FinalLevel3
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1538853548427372747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4950,7 +4962,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MovePlatformTest
+          m_StringArgument: FinalLevel1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!224 &2134163440346146066
@@ -5231,7 +5243,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7773021330378565974}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089154635}
+        m_TargetAssemblyTypeName: LevelSelectionManager, Runtime
+        m_MethodName: ChangeLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: FinalLevel2
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &3846135303569150269
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6182,7 +6206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6699625755697868535}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2089154635}
+        m_TargetAssemblyTypeName: LevelSelectionManager, Runtime
+        m_MethodName: ChangeLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: FinalLevel4
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8067070170667564097
 GameObject:
   m_ObjectHideFlags: 0
