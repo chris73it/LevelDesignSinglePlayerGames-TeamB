@@ -117,7 +117,7 @@ public class BuildableCounters : MonoBehaviour
             {
                 jumpCurrentTotal = 0;
             }
-            if (jumpCurrentTotal >= rampLevelMax)
+            if (jumpCurrentTotal >= jumpLevelMax)
             {
                 return;
             }
