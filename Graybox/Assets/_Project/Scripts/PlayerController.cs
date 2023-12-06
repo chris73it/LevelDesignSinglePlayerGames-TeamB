@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
             // By adding a force rather than simply translating the player character's movement, we can make it possible to
             // simulate certain surfaces such as ice or mud, as well as make movement more realistic overall.
 
-            playerRB.AddForce(new(50 * (int)state, 0));
+            playerRB.AddForce(new(speed * (int)state, 0));
             if ((playerRB.velocity.x < maxMoveSpeed && state == States.right) || (playerRB.velocity.x > -(maxMoveSpeed) && state == States.left))
             {
                 //Accelerate(speed);
