@@ -15267,7 +15267,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 04656a14493d9a546bfaff3cda0dd39f
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1087
     originalName: 
@@ -15281,7 +15286,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 8de9a23cfbcd33b439a703fed8f2b6a0
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1088
     originalName: 
@@ -15295,7 +15305,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 9486c9d65344b254fac491d4d67b042e
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1089
     originalName: 
@@ -15309,7 +15324,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 937967b51314aec4da8ec8904f5ef8cd
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1090
     originalName: 
@@ -15762,7 +15782,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 853175f9cdca0a642a2288dd32454b7d
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1122
     originalName: 
@@ -15776,7 +15801,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 37a6b49e3b184214b8acba75f3751ec7
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1123
     originalName: 
@@ -15842,7 +15872,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 40fa22c21accf8f42a2856737b52d896
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1127
     originalName: 
@@ -15856,7 +15891,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: a58d4a74aa07b7e41b0a04b8ef9394f0
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1128
     originalName: 
@@ -15870,7 +15910,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 40f566f412a38ab47bd9fe232e8d8537
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1129
     originalName: 
@@ -15884,7 +15929,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: f70266b976a06c141b251ad90e51a1bc
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1130
     originalName: 
@@ -15898,7 +15948,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 6098d22bcfe595e408768fbb589e2302
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1131
     originalName: 
@@ -15912,7 +15967,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 1577bfca68db1f1488bb1bdf635d45b6
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1132
     originalName: 
@@ -16365,7 +16425,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 5aaf598f63d66ad42826cce6da8d6c5c
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1164
     originalName: 
@@ -16379,7 +16444,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 6f5ce6946b1ca0e48908b5bae57fe20c
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1165
     originalName: 
@@ -16393,7 +16463,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: b01341365b3c7f341a23f72cc7e7ebd0
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1166
     originalName: 
@@ -16459,7 +16534,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: c895479e1f635eb4b9eccf5619166db9
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1170
     originalName: 
@@ -16473,7 +16553,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 8975b7e30d48a2542b63d5fa1aa943b7
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1171
     originalName: 
@@ -16487,7 +16572,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 406a35080f8baad459a513d917e82347
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1172
     originalName: 
@@ -16501,7 +16591,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 585bcd769b8d6c943b9084279c7af441
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1173
     originalName: 
@@ -16949,7 +17044,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: bd47a3562a5f7f947991f38f789b8821
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1205
     originalName: 
@@ -16963,7 +17063,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: bfa8cfaa2fd5adb47bedf8759e14fbff
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1206
     originalName: 
@@ -17067,7 +17172,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 34415e6e175159747afa09b92ddf1d0b
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1212
     originalName: 
@@ -17081,7 +17191,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 93b3bf353b6eb2945b00791c74f25671
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1213
     originalName: 
@@ -17095,7 +17210,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 034e984b7b4f31b4e8a6d26df07b8a53
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1214
     originalName: 
@@ -17109,7 +17229,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 7b0f07f83f7bc23488c0f67ac3fe5a61
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1215
     originalName: 
@@ -17557,7 +17682,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 98ab2c9ddcab41a4d9cf42f842e995a5
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1247
     originalName: 
@@ -17571,7 +17701,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 9ec1402dc1f331042ba708d4095b8452
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1248
     originalName: 
@@ -17604,7 +17739,12 @@ ScriptedImporter:
       width: 8
       height: 8
     spriteID: 29505a2a18366544bb0f0bc1d2f13b5f
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -4, y: 4}
+      - {x: -4, y: -4}
+      - {x: 4, y: -4}
+      - {x: 4, y: 4}
     tessellationDetail: 0
   - name: Graybox_full_tileset2_1250
     originalName: 
