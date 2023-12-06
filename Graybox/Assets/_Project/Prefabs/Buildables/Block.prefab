@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2518345c1d7241d8a03d24f6da3b4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPlayerPlaced: 0
   tileBase: {fileID: -8149818261399441530, guid: f3feeb8a401a93145b09ab7ea7c16353, type: 3}
 --- !u!212 &167998364267028646
 SpriteRenderer:
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 457049718, guid: 5ccb04d8c10fb35499a6093a0bbdeed1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a60693df0c9bfe5449c35acf94dae045, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,7 +136,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.08, y: 0.08}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
