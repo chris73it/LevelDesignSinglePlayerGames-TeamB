@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     //delegate to invoke a respawn message upon death
     public static event Action Respawn;
 
+    public Collider2D trigger;
+
     enum States
     {
         right = 1,
@@ -98,7 +100,7 @@ public class PlayerController : MonoBehaviour
                 //Accelerate(speed);
 
                 
-                //playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);  
+                playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);  
             } else {
                 playerRB.velocity = new(Mathf.Clamp(playerRB.velocity.x, -maxMoveSpeed, maxMoveSpeed), playerRB.velocity.y);
             }
@@ -158,6 +160,7 @@ public class PlayerController : MonoBehaviour
 
         colliders = new();
         playerRB.GetAttachedColliders(colliders);
+        trigger = colliders.Find(collider => collider.isTrigger);
     }
 
     // Update is called once per frame
@@ -165,7 +168,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isGhostMode && !inGhostTrigger) {
             List<Collider2D> cols = new();
-            GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), cols);
+            trigger.OverlapCollider(new ContactFilter2D(), cols);
             bool inWall = false;
 
             foreach(Collider2D col in cols) {
