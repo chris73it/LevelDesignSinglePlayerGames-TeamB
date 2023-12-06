@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,10 +32,12 @@ public class PlayerController : MonoBehaviour
     //delegate to invoke a respawn message upon death
     public static event Action Respawn;
 
+    public Collider2D trigger;
+
     enum States
     {
-        right = 0,
-        left
+        right = 1,
+        left=-1
     }
 
     States state = States.right;
@@ -90,12 +93,18 @@ public class PlayerController : MonoBehaviour
 
             // By adding a force rather than simply translating the player character's movement, we can make it possible to
             // simulate certain surfaces such as ice or mud, as well as make movement more realistic overall.
-            if ((currentSpeed < maxMoveSpeed && state == States.right) || (currentSpeed > -(maxMoveSpeed) && state == States.left))
+
+            playerRB.AddForce(new(50 * (int)state, 0));
+            if ((playerRB.velocity.x < maxMoveSpeed && state == States.right) || (playerRB.velocity.x > -(maxMoveSpeed) && state == States.left))
             {
-                Accelerate(speed);
-                //playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);  
+                //Accelerate(speed);
+
+                
+                playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);  
+            } else {
+                playerRB.velocity = new(Mathf.Clamp(playerRB.velocity.x, -maxMoveSpeed, maxMoveSpeed), playerRB.velocity.y);
             }
-            playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
+            //playerRB.velocity = new Vector2(currentSpeed, playerRB.velocity.y);
         }
     }
     public void TurnAround()
@@ -151,6 +160,7 @@ public class PlayerController : MonoBehaviour
 
         colliders = new();
         playerRB.GetAttachedColliders(colliders);
+        trigger = colliders.Find(collider => collider.isTrigger);
     }
 
     // Update is called once per frame
@@ -158,7 +168,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isGhostMode && !inGhostTrigger) {
             List<Collider2D> cols = new();
-            GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), cols);
+            trigger.OverlapCollider(new ContactFilter2D(), cols);
             bool inWall = false;
 
             foreach(Collider2D col in cols) {
