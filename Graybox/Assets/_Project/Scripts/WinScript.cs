@@ -11,18 +11,9 @@ public class WinScript : MonoBehaviour {
     public int returnToLevelSelect;
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player") {
-            
             WinLog();
+            onWin?.Invoke(); 
         }      
-    }
-    
-    private void OnEnable()
-    {
-        onWin += WinLog;
-    }
-    private void OnDisable()
-    {
-        onWin -= WinLog;
     }
 
     void WinLog() {
