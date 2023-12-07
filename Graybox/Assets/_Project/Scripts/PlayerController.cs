@@ -13,10 +13,10 @@ public class PlayerController : MonoBehaviour
     //logical bools
     private bool isWalking = false;
     //private bool isPaused = false;
-    private bool isTouchingGround = false;
+    //private bool isTouchingGround = false;
     private bool onFirstCollision = false;
     //inspector editable variables for jump and movement speed
-    private float currentSpeed;
+    public float currentSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float maxMoveSpeed;
     [SerializeField] float jumpForce = 400f;
@@ -258,6 +258,7 @@ public class PlayerController : MonoBehaviour
         PlaybackControl.restart -= Restart;
     }
 
+    /*
     //ground check so player can't double jump
     //***requires "Ground" tag for any jumpable objects***
     void OnCollisionEnter2D(Collision2D collision)
@@ -275,4 +276,5 @@ public class PlayerController : MonoBehaviour
             isTouchingGround = false;
         }
     }
+    */
 }

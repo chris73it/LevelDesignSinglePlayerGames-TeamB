@@ -91,8 +91,9 @@ public class TileCreator : MonoBehaviour {
                 if (clickedBlock.TryGetComponent<PlaceableTile>(out tileObject))
                 {
                     if(tileObject.IsPlayerPlaced) {
-                        DestroyItem(clickedBlock);
+                        Debug.Log(clickedBlock);
                         tileRemoved?.Invoke(clickedBlock);
+                        DestroyItem(clickedBlock);
                     }
                 }
             }
