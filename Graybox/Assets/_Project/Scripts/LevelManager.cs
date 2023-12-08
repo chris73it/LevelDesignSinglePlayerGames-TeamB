@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     public CurrentLevel level;
     public LevelTracker tracker;
-    /*
     public Button level1BT;
     public Button level2BT;
     public Button level3BT;
@@ -21,24 +18,33 @@ public class LevelManager : MonoBehaviour
     public Button level10BT;
     public Button level11BT;
     public Button level12BT;
-    */
 
-    public void Start()
+    private void Start()
     {
-        tracker.completedLevels.Add(1, false);
-        tracker.completedLevels.Add(2, false);
-        tracker.completedLevels.Add(3, false);
-        tracker.completedLevels.Add(4, false);
-        tracker.completedLevels.Add(5, false);
-        tracker.completedLevels.Add(6, false);
-        tracker.completedLevels.Add(7, false);
-        tracker.completedLevels.Add(8, false);
-        tracker.completedLevels.Add(9, false);
-        tracker.completedLevels.Add(10, false);
-        tracker.completedLevels.Add(11, false);
-        tracker.completedLevels.Add(12, false);
+        level2BT.gameObject.SetActive(false);
+        level3BT.gameObject.SetActive(false);
+        level4BT.gameObject.SetActive(false);
+        level5BT.gameObject.SetActive(false);
+        level6BT.gameObject.SetActive(false);
+        level7BT.gameObject.SetActive(false);
+        level8BT.gameObject.SetActive(false);
+        level9BT.gameObject.SetActive(false);
+        level10BT.gameObject.SetActive(false);
+        level11BT.gameObject.SetActive(false);
+        level12BT.gameObject.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        WinScript.onWin += CheckProgress;
+        ReturnToLevelSelect.Return += CheckProgress;
+    }
+
+    private void OnDisable()
+    {
+        WinScript.onWin -= CheckProgress;
+        ReturnToLevelSelect.Return -= CheckProgress;
+    }
     public void EnterLevel1()
     {
         level.currentLevel = 1;
@@ -90,5 +96,49 @@ public class LevelManager : MonoBehaviour
     public void EnterLevel12()
     {
         level.currentLevel = 12;
+    }
+
+    private void CheckProgress()
+    {
+        if (tracker.completedLevels[1] == true)
+        {
+            tracker.firstGate = true;
+            UpdateMap();
+        }
+        if (tracker.completedLevels[2] == true && tracker.completedLevels[3] == true && tracker.completedLevels[4] == true)
+        {
+            tracker.secondGate = true;
+            UpdateMap();
+        }
+        if (tracker.completedLevels[5] == true)
+        {
+            tracker.thirdGate = true;
+            UpdateMap();
+        }
+        if (tracker.completedLevels[6] == true && tracker.completedLevels[7] == true && tracker.completedLevels[8] == true)
+        {
+            tracker.fourthGate = true;
+            UpdateMap();
+        }
+        if (tracker.completedLevels[9] == true)
+        {
+            tracker.fifthGate = true;
+            UpdateMap();
+        }
+        if (tracker.completedLevels[10] == true && tracker.completedLevels[11] && tracker.completedLevels[12] == true)
+        {
+            tracker.sixthGate = true;
+            UpdateMap();
+        }
+    }
+
+    private void UpdateMap()
+    {
+        if (tracker.firstGate == true)
+        {
+            level2BT.gameObject.SetActive(true);
+            level3BT.gameObject.SetActive(true);
+            level4BT.gameObject.SetActive(true);
+        }
     }
 }

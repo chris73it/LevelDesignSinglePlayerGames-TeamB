@@ -4496,6 +4496,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 11400000, guid: ae17189570270499f973081dff5e52b5, type: 2}
   tracker: {fileID: 11400000, guid: cd10bcca9f72f410988bb2b592ae1dcb, type: 2}
+  level1BT: {fileID: 2096125913041082161}
+  level2BT: {fileID: 3822945291347660663}
+  level3BT: {fileID: 1378114768578013290}
+  level4BT: {fileID: 7915042098851877735}
+  level5BT: {fileID: 45336154}
+  level6BT: {fileID: 1502565743}
+  level7BT: {fileID: 401689262}
+  level8BT: {fileID: 964676543}
+  level9BT: {fileID: 1721847668}
+  level10BT: {fileID: 45876419}
+  level11BT: {fileID: 1753546844}
+  level12BT: {fileID: 1148874666}
 --- !u!1 &2140485069
 GameObject:
   m_ObjectHideFlags: 0
@@ -4827,10 +4839,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelSelectionManager, Runtime
-        m_MethodName: ChangeLevel
-        m_Mode: 5
+      - m_Target: {fileID: 2089154637}
+        m_TargetAssemblyTypeName: LevelManager, Runtime
+        m_MethodName: EnterLevel3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5246,10 +5258,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelSelectionManager, Runtime
-        m_MethodName: ChangeLevel
-        m_Mode: 5
+      - m_Target: {fileID: 2089154637}
+        m_TargetAssemblyTypeName: LevelManager, Runtime
+        m_MethodName: EnterLevel2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5257,7 +5269,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: FinalLevel2
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!222 &3846135303569150269
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6209,10 +6221,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelSelectionManager, Runtime
-        m_MethodName: ChangeLevel
-        m_Mode: 5
+      - m_Target: {fileID: 2089154637}
+        m_TargetAssemblyTypeName: LevelManager, Runtime
+        m_MethodName: EnterLevel4
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
