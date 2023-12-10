@@ -26,4 +26,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Final Levels/FinalLevel4.unity
     guid: 85bec173ab830e540823ea3857f53039
+  - enabled: 1
+    path: Assets/_Project/Scenes/Final Levels/FinalLevel5.unity
+    guid: 3ce4da3c86c9d1643ad36ac39f66802d
+  - enabled: 1
+    path: Assets/_Project/Scenes/Final Levels/FinalLevel6.unity
+    guid: fa5e5337c8d0f8146a805b33fab90ae2
+  - enabled: 1
+    path: Assets/_Project/Scenes/Final Levels/FinalLevel7.unity
+    guid: 47092293db2a6cc4e86d97cc68294687
+  - enabled: 1
+    path: Assets/_Project/Scenes/Final Levels/FinalLevel8.unity
+    guid: 388c24a3b10af4c48be60828766a82b1
+  - enabled: 1
+    path: Assets/_Project/Scenes/Final Levels/FinalLevel9.unity
+    guid: 7b27ec06512afee40a44ec4d73c1b0f1
+  - enabled: 1
+    path: Assets/_Project/Scenes/Final Levels/FinalLevel10.unity
+    guid: 9e13d16dc3103e24ba0dfa56de986964
+  - enabled: 1
+    path: Assets/_Project/Scenes/Final Levels/FinalLevel11.unity
+    guid: 0e618c021610c294a9479aff46b20e50
+  - enabled: 1
+    path: Assets/_Project/Scenes/Final Levels/FinalLevel12.unity
+    guid: fd9bea76b7c405d4b9bae560f6f14258
   m_configObjects: {}
