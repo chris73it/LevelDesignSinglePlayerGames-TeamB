@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class WinScript : MonoBehaviour {
+    
     public static event Action onWin;
     public string nextScene = "";
     public float sceneDelay = 0.5f;
@@ -12,7 +13,7 @@ public class WinScript : MonoBehaviour {
         if(collision.tag == "Player") {
 
             SceneManager.LoadScene(returnToLevelSelect);
-        }
+        }      
     }
     /*
     private void Start(){
