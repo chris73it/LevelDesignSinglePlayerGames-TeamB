@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548415d9560a24dddbef53c0236dd4cd, type: 3}
   m_Name: FinalLevel5Limits
   m_EditorClassIdentifier: 
-  blockLimit: 2
+  blockLimit: 3
   rampLimit: 0
   jumpLimit: 1
   directionLimit: 1
