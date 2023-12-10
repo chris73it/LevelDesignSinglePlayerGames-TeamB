@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f135a3c40f524954595a5be93f9f9477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickup: {fileID: 0}
 --- !u!114 &5636923059527715484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2518345c1d7241d8a03d24f6da3b4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPlayerPlaced: 0
   tileBase: {fileID: 11400000, guid: 4dad3c14c08934b5488da27a629aeef9, type: 2}
 --- !u!212 &3052157091601066794
 SpriteRenderer:
