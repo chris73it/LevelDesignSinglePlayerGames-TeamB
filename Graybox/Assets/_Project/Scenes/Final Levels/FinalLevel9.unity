@@ -135,13 +135,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level9
       objectReference: {fileID: 0}
+    - target: {fileID: -4930174945500406423, guid: d684845daf162d049be48822e66c0eac, type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -2061919474643022816, guid: d684845daf162d049be48822e66c0eac, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2061919474643022816, guid: d684845daf162d049be48822e66c0eac, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2061919474643022816, guid: d684845daf162d049be48822e66c0eac, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
