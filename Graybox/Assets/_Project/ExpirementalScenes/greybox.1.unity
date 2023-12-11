@@ -580,6 +580,10 @@ PrefabInstance:
       propertyPath: previewMap
       value: 
       objectReference: {fileID: 1964388887}
+    - target: {fileID: 6484693984766543515, guid: d5d0b9a8e4a7a481da68eb3dd9bc9fe0, type: 3}
+      propertyPath: levelLimits
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b6758c805250b54da98ab201db87980, type: 2}
     - target: {fileID: 6778927861664753184, guid: d5d0b9a8e4a7a481da68eb3dd9bc9fe0, type: 3}
       propertyPath: m_Name
       value: TilePlacer

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     //inspector editable variables for jump and movement speed
     public float currentSpeed;
     [SerializeField] float playerSpeed;
+    float speedScalar = 1;
     [SerializeField] float maxMoveSpeed;
     [SerializeField] float jumpForce = 400f;
     //inspector editable variable for delay from message of death to destruction and respawn
@@ -121,6 +122,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void EnterRampMode() {
+        speedScalar = Mathf.Sqrt(2) * 2;
+    }
+
+    public void ExitRampMode() {
+        speedScalar = 1;
+    }
+
     public void Jump()
     {
         if (isPaused == false)
@@ -208,10 +217,10 @@ public class PlayerController : MonoBehaviour
     {
         switch (state) {
             case States.right:
-                Move(playerSpeed);
+                Move(playerSpeed * speedScalar);
                 break;
             case States.left:
-                Move(-playerSpeed);
+                Move(-playerSpeed * speedScalar);
                 break;
             default:
                 break;
@@ -233,6 +242,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.blue;
         inGhostTrigger = false;
     }
+
 
     void EndGhost() {
         isGhostMode = false;
