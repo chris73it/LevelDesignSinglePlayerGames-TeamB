@@ -512,13 +512,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4574526605664871768, guid: 1968e8c39a65e824c84d43817b722f01, type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4167442957343418792, guid: 1968e8c39a65e824c84d43817b722f01, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4167442957343418792, guid: 1968e8c39a65e824c84d43817b722f01, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4167442957343418792, guid: 1968e8c39a65e824c84d43817b722f01, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
