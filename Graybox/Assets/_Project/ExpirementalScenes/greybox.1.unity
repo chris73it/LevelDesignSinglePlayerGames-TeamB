@@ -580,6 +580,10 @@ PrefabInstance:
       propertyPath: previewMap
       value: 
       objectReference: {fileID: 1964388887}
+    - target: {fileID: 6484693984766543515, guid: d5d0b9a8e4a7a481da68eb3dd9bc9fe0, type: 3}
+      propertyPath: levelLimits
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b6758c805250b54da98ab201db87980, type: 2}
     - target: {fileID: 6778927861664753184, guid: d5d0b9a8e4a7a481da68eb3dd9bc9fe0, type: 3}
       propertyPath: m_Name
       value: TilePlacer
@@ -603,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 548108705233454896, guid: e6645acf8825e4acda2e31d4f1315659, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5777933823202298183, guid: e6645acf8825e4acda2e31d4f1315659, type: 3}
       propertyPath: distance
@@ -724,7 +728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8531222299252784031, guid: 9daeb65698805694dbaefbe8b76e00dc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9051133828239636850, guid: 9daeb65698805694dbaefbe8b76e00dc, type: 3}
       propertyPath: m_Sprite
@@ -1095,7 +1099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1380192600681163501, guid: 7afdcb2f14df84b659825d6bc15d5b28, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4948427065130020944, guid: 7afdcb2f14df84b659825d6bc15d5b28, type: 3}
       propertyPath: m_RootOrder
@@ -1160,7 +1164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3352033114341288210, guid: 3555bf24ec7f044698ac7b657f27f01f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4185829978944023345, guid: 3555bf24ec7f044698ac7b657f27f01f, type: 3}
       propertyPath: m_RootOrder
