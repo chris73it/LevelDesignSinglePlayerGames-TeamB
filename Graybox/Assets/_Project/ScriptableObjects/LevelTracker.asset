@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548415d9560a24dddbef53c0236dd4cd, type: 3}
-  m_Name: FinalLevel6Limits
+  m_Script: {fileID: 11500000, guid: 164fe1ea9e873431e9900753d1a69a96, type: 3}
+  m_Name: LevelTracker
   m_EditorClassIdentifier: 
-  blockLimit: 7
-  rampLimit: 5
-  jumpLimit: 7
-  directionLimit: 7
-  wallsLimit: 0
+  firstGate: 1
+  secondGate: 0
+  thirdGate: 0
+  fourthGate: 0
+  fifthGate: 0
+  sixthGate: 0
+  levelSO: {fileID: 11400000, guid: ae17189570270499f973081dff5e52b5, type: 2}

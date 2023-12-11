@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548415d9560a24dddbef53c0236dd4cd, type: 3}
-  m_Name: FinalLevel6Limits
+  m_Script: {fileID: 11500000, guid: 9d92ca99d386945a492a86821c574797, type: 3}
+  m_Name: CurrentLevel
   m_EditorClassIdentifier: 
-  blockLimit: 7
-  rampLimit: 5
-  jumpLimit: 7
-  directionLimit: 7
-  wallsLimit: 0
+  currentlevel: 0

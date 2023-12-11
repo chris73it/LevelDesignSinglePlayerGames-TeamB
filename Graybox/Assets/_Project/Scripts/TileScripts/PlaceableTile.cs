@@ -14,6 +14,6 @@ public enum TagCategory
 
 public class PlaceableTile : MonoBehaviour
 {
-    public bool IsPlayerPlaced = false;
+    public bool IsPlayerPlaced = true;
     public TileBase tileBase;
 }

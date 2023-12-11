@@ -8,13 +8,15 @@ public class PlayerController : MonoBehaviour
 {
     // class level reference setup
     private Animator playerAnimator;
-    private GameObject thisPlayer;
+    public static GameObject thisPlayer;
     private Rigidbody2D playerRB;
     //logical bools
     private bool isWalking = false;
+    //private bool isPaused = false;
+    //private bool isTouchingGround = false;
     private bool onFirstCollision = false;
     //inspector editable variables for jump and movement speed
-    private float currentSpeed;
+    public float currentSpeed;
     [SerializeField] float playerSpeed;
     float speedScalar = 1;
     [SerializeField] float maxMoveSpeed;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     //inspector editable variable for delay from message of death to destruction and respawn
     [SerializeField] float deathDelay = 2.25f;
     private bool isPaused;
+
     private bool isGhostMode = false;
     private List<Collider2D> colliders;
     private bool inGhostTrigger = false;
@@ -60,12 +63,39 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
         Respawn?.Invoke();
     }
+
+    //commented out Ethan's changes here since we've shifted from Pause to Restart
+    public void Pause()
+    {
+        if (!onFirstCollision)
+        {
+            playerAnimator.SetBool("isPaused", true);
+            // We don't want to simulate physics while the game is paused because that would make it possible for the character
+            // to keep falling when paused.
+            playerRB.simulated = false;
+            isPaused = true;
+        }
+    }
+    
+
+    //Movement methods
+
+    public void Accelerate(float factor)
+    {
+        currentSpeed += factor;
+    }
     
     // Moved the MoveRight function into one function and made it bidirectional.
     public void Move(float speed)
     {
         if (isWalking == true)
         {
+            //transform.Translate(Vector3.right * playerSpeed);
+
+            // By adding a force rather than simply translating the player character's movement, we can make it possible to
+            // simulate certain surfaces such as ice or mud, as well as make movement more realistic overall.
+
+            //playerRB.AddForce(new(speed, 0));
             if ((playerRB.velocity.x < maxMoveSpeed && state == States.right) || (playerRB.velocity.x > -(maxMoveSpeed) && state == States.left))
             {
                 //Accelerate(speed);
@@ -125,7 +155,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Die());
             playerAnimator.SetBool("isDead", true);
             playerRB.simulated = false;
-            thisPlayer = gameObject;
         }
     }
 
@@ -134,6 +163,7 @@ public class PlayerController : MonoBehaviour
         // grab references
         playerAnimator = gameObject.GetComponent<Animator>();
         playerRB = gameObject.GetComponent<Rigidbody2D>();
+        thisPlayer = gameObject;
         // prevent jumping before pressing play 
         playerAnimator.SetBool("isPaused", true);
         isPaused = true;
@@ -228,6 +258,7 @@ public class PlayerController : MonoBehaviour
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
         PlaybackControl.restart += Restart;
+        WinScript.onWin += Pause;
     }
 
     private void OnDisable()
@@ -235,7 +266,27 @@ public class PlayerController : MonoBehaviour
         TurnPickup.turnaround -= TurnAround;
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;
-        //PlaybackControl.restart -= Pause;
         PlaybackControl.restart -= Restart;
+        WinScript.onWin -= Pause;
     }
+
+    /*
+    //ground check so player can't double jump
+    //***requires "Ground" tag for any jumpable objects***
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isTouchingGround = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isTouchingGround = false;
+        }
+    }
+    */
 }
