@@ -9,10 +9,11 @@ public class WinScript : MonoBehaviour {
     public string nextScene = "";
     public float sceneDelay = 0.5f;
     public int returnToLevelSelect;
+    //public LevelTracker tracker;
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player") {
             WinLog();
-            onWin?.Invoke(); 
+            onWin?.Invoke();
         }      
     }
 

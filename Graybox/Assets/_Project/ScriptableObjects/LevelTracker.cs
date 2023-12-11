@@ -4,34 +4,42 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "LevelTracker", order = 1)]
 public class LevelTracker : ScriptableObject
 {
-    [HideInInspector]
-    public Dictionary<int, bool> completedLevels = new Dictionary<int, bool>();
+    public static Dictionary<int, bool> completedLevels = new Dictionary<int, bool>();
 
     [HideInInspector]
-    public bool firstGate = false;
+    public static bool firstGate;
     [HideInInspector]
-    public bool secondGate = false;
+    public static bool secondGate;
     [HideInInspector]
-    public bool thirdGate = false;
+    public static bool thirdGate;
     [HideInInspector]
-    public bool fourthGate = false;
+    public static bool fourthGate;
     [HideInInspector]
-    public bool fifthGate = false;
+    public static bool fifthGate;
     [HideInInspector]
-    public bool sixthGate = false;
+    public static bool sixthGate;
 
-    [SerializeField]
-    private CurrentLevel levelSO; 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void OnBeforeSceneLoad()
+    {
+            firstGate = false;
+            secondGate = false;
+            thirdGate = false;
+            fourthGate = false;
+            fifthGate = false;
+            sixthGate = false;
+    }
 
     private void OnEnable()
     {
         WinScript.onWin += WinState;
+
         completedLevels[1] = false;
         completedLevels[2] = false;
         completedLevels[3] = false;
         completedLevels[4] = false;
         completedLevels[5] = false;
-        completedLevels[6] = false;
+        completedLevels[6] = true;
         completedLevels[7] = false;
         completedLevels[8] = false;
         completedLevels[9] = false;
@@ -46,6 +54,6 @@ public class LevelTracker : ScriptableObject
 
     private void WinState()
     {
-        completedLevels[levelSO.currentLevel] = true;
+        completedLevels[CurrentLevel.currentLevel] = true;
     }
 }
