@@ -707,16 +707,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2440134271432071126, guid: a4b9738a017ee574cb37311b777cb437, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2440134271432071126, guid: a4b9738a017ee574cb37311b777cb437, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2440134271432071126, guid: a4b9738a017ee574cb37311b777cb437, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
       value: 
-      objectReference: {fileID: 1204481560}
+      objectReference: {fileID: 1204481570}
     - target: {fileID: 2440134271432071126, guid: a4b9738a017ee574cb37311b777cb437, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[0].Array.size
       value: 6
@@ -1169,6 +1169,10 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[4].Array.data[3].X
       value: 20000000
       objectReference: {fileID: 0}
+    - target: {fileID: 3128816923504073254, guid: a4b9738a017ee574cb37311b777cb437, type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5917058044644318441, guid: a4b9738a017ee574cb37311b777cb437, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 1
@@ -1187,7 +1191,7 @@ TilemapCollider2D:
   m_CorrespondingSourceObject: {fileID: 3079976360447080515, guid: a4b9738a017ee574cb37311b777cb437, type: 3}
   m_PrefabInstance: {fileID: 1204481558}
   m_PrefabAsset: {fileID: 0}
---- !u!19719996 &1204481560 stripped
+--- !u!19719996 &1204481570 stripped
 TilemapCollider2D:
   m_CorrespondingSourceObject: {fileID: 3128816923504073254, guid: a4b9738a017ee574cb37311b777cb437, type: 3}
   m_PrefabInstance: {fileID: 1204481558}
