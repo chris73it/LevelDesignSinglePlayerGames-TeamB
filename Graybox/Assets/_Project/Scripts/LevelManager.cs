@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     public void EnterLevel1()
     {
         CurrentLevel.currentLevel = 1;
-        Debug.Log(LevelTracker.completedLevels[1]);
+        //Debug.Log(LevelTracker.completedLevels[1]);
         SceneManager.LoadScene("FinalLevel1", LoadSceneMode.Single);
     }
     public void EnterLevel2()
