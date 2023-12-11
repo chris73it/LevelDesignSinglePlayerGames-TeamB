@@ -32,12 +32,12 @@ public class PlayerController : MonoBehaviour
     //delegate to invoke a respawn message upon death
     public static event Action Respawn;
 
-    public Collider2D trigger;
+    Collider2D trigger;
 
     enum States
     {
         right = 1,
-        left=-1
+        left = -1
     }
 
     States state = States.right;
@@ -94,13 +94,13 @@ public class PlayerController : MonoBehaviour
             // By adding a force rather than simply translating the player character's movement, we can make it possible to
             // simulate certain surfaces such as ice or mud, as well as make movement more realistic overall.
 
-            playerRB.AddForce(new(50 * (int)state, 0));
+            //playerRB.AddForce(new(speed, 0));
             if ((playerRB.velocity.x < maxMoveSpeed && state == States.right) || (playerRB.velocity.x > -(maxMoveSpeed) && state == States.left))
             {
                 //Accelerate(speed);
 
                 
-                playerRB.AddForce(new Vector2(playerSpeed, 0), ForceMode2D.Impulse);  
+                playerRB.AddForce(new(speed, 0), ForceMode2D.Impulse);  
             } else {
                 playerRB.velocity = new(Mathf.Clamp(playerRB.velocity.x, -maxMoveSpeed, maxMoveSpeed), playerRB.velocity.y);
             }
@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
     }
     public void TurnAround()
     {
+        //playerRB.velocity *= new Vector2(-1f, 1f);
         switch (state)
         {
             case States.right:

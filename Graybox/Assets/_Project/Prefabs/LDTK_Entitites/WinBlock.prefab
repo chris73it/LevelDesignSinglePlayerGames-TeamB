@@ -145,3 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextScene: LevelSelectUITest
   sceneDelay: 0.5
+  returnToLevelSelect: 1
