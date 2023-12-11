@@ -824,6 +824,10 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
       value: 
       objectReference: {fileID: 1139487952}
+    - target: {fileID: 4549850728777004085, guid: 1968e8c39a65e824c84d43817b722f01, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8443694076940768993, guid: 1968e8c39a65e824c84d43817b722f01, type: 3}
       propertyPath: m_Name
       value: Level11
