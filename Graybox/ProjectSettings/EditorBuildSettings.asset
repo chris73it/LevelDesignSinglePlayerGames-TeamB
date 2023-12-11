@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/MainMenu.unity
     guid: a00a40b67dd6d684091f417380ecf3ac
+  - enabled: 0
+    path: Assets/_Project/ExpirementalScenes/TestLevel1.unity
+    guid: f7363c4a593a5415696df4380dffefa0
   - enabled: 1
-    path: Assets/_Project/ExpirementalScenes/LevelSelectUITest.unity
-    guid: e13ce25f6491526429e27d519ab9fb86
+    path: Assets/_Project/Scenes/MS_SelectUITest.unity
+    guid: e5747b86733514a3398416114bfd11c5
   - enabled: 1
     path: Assets/_Project/Scenes/Credits.unity
     guid: 69441060a9c68a94fb96e8fdfbccebf8
@@ -50,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Final Levels/FinalLevel12.unity
     guid: fd9bea76b7c405d4b9bae560f6f14258
+  - enabled: 1
+    path: Assets/_Project/Scenes/Victory.unity
+    guid: bb78cfd68abe4427bad7ee8f4b92ff6b
   m_configObjects: {}

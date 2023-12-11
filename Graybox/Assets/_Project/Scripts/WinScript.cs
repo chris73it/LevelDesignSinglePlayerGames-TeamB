@@ -9,19 +9,16 @@ public class WinScript : MonoBehaviour {
     public string nextScene = "";
     public float sceneDelay = 0.5f;
     public int returnToLevelSelect;
+    //public LevelTracker tracker;
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player") {
-
-            SceneManager.LoadScene(returnToLevelSelect);
+            WinLog();
+            onWin?.Invoke();
         }      
-    }
-    /*
-    private void Start(){
-        onWin += WinLog;
     }
 
     void WinLog() {
-        Debug.Log("wow you won, no thanks to marshall");
+        //Debug.Log("wow you won, no thanks to marshall");
         if(nextScene != "") {
             StartCoroutine(NextScene(sceneDelay));
         }
@@ -31,10 +28,5 @@ public class WinScript : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(nextScene);
     }
-    */
 
-    public void ReturnToLevelSelectButton()
-    {
-        SceneManager.LoadScene(returnToLevelSelect);
-    }
 }

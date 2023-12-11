@@ -970,8 +970,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1924165121955361418, guid: 558bb89a0bcb54736bcba30528142aff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 960589797}
   m_SourcePrefab: {fileID: 100100000, guid: 558bb89a0bcb54736bcba30528142aff, type: 3}
+--- !u!1 &960589796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1924165121955361418, guid: 558bb89a0bcb54736bcba30528142aff, type: 3}
+  m_PrefabInstance: {fileID: 960589795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &960589797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960589796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd185404fca54716ab0d850c7e74510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 11400000, guid: ae17189570270499f973081dff5e52b5, type: 2}
+  tracker: {fileID: 11400000, guid: cd10bcca9f72f410988bb2b592ae1dcb, type: 2}
+  level1BT: {fileID: 0}
+  level2BT: {fileID: 0}
+  level3BT: {fileID: 0}
+  level4BT: {fileID: 0}
+  level5BT: {fileID: 0}
+  level6BT: {fileID: 0}
+  level7BT: {fileID: 0}
+  level8BT: {fileID: 0}
+  level9BT: {fileID: 0}
+  level10BT: {fileID: 0}
+  level11BT: {fileID: 0}
+  level12BT: {fileID: 0}
 --- !u!1839735485 &1358276817 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 3985476668623221198, guid: d2bae3e326562984f8b4659d326c6cf6, type: 3}

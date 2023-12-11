@@ -8,15 +8,15 @@ public class PlayerController : MonoBehaviour
 {
     // class level reference setup
     private Animator playerAnimator;
-    private GameObject thisPlayer;
+    public static GameObject thisPlayer;
     private Rigidbody2D playerRB;
     //logical bools
     private bool isWalking = false;
     //private bool isPaused = false;
-    private bool isTouchingGround = false;
+    //private bool isTouchingGround = false;
     private bool onFirstCollision = false;
     //inspector editable variables for jump and movement speed
-    private float currentSpeed;
+    public float currentSpeed;
     [SerializeField] float playerSpeed;
     float speedScalar = 1;
     [SerializeField] float maxMoveSpeed;
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         Respawn?.Invoke();
     }
 
-    /* commented out Ethan's changes here since we've shifted from Pause to Restart
+    //commented out Ethan's changes here since we've shifted from Pause to Restart
     public void Pause()
     {
         if (!onFirstCollision)
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
             isPaused = true;
         }
     }
-    */
+    
 
     //Movement methods
 
@@ -155,7 +155,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Die());
             playerAnimator.SetBool("isDead", true);
             playerRB.simulated = false;
-            thisPlayer = gameObject;
         }
     }
 
@@ -164,6 +163,7 @@ public class PlayerController : MonoBehaviour
         // grab references
         playerAnimator = gameObject.GetComponent<Animator>();
         playerRB = gameObject.GetComponent<Rigidbody2D>();
+        thisPlayer = gameObject;
         // prevent jumping before pressing play 
         playerAnimator.SetBool("isPaused", true);
         isPaused = true;
@@ -258,6 +258,7 @@ public class PlayerController : MonoBehaviour
         DoesDamage.damage += Dying;
         PlaybackControl.play += Play;
         PlaybackControl.restart += Restart;
+        WinScript.onWin += Pause;
     }
 
     private void OnDisable()
@@ -265,10 +266,11 @@ public class PlayerController : MonoBehaviour
         TurnPickup.turnaround -= TurnAround;
         DoesDamage.damage -= Dying;
         PlaybackControl.play -= Play;
-        //PlaybackControl.restart -= Pause;
         PlaybackControl.restart -= Restart;
+        WinScript.onWin -= Pause;
     }
 
+    /*
     //ground check so player can't double jump
     //***requires "Ground" tag for any jumpable objects***
     void OnCollisionEnter2D(Collision2D collision)
@@ -286,4 +288,5 @@ public class PlayerController : MonoBehaviour
             isTouchingGround = false;
         }
     }
+    */
 }
