@@ -127,12 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ef9ca6b4861470e9b43848ad23c7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
   playerSpeed: 0.6
   maxMoveSpeed: 5
   jumpForce: 15
   deathDelay: 2.25
-  ghostVelocityScalars: {x: 1.5, y: 1.5}
-  trigger: {fileID: 0}
+  ghostVelocityScalars: {x: 2.25, y: 2.25}
+  debugMode: 0
 --- !u!95 &4625187279442606480
 Animator:
   serializedVersion: 5
@@ -141,7 +142,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7241344121234824699}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d1b570b8712b143299222eee37445b6c, type: 2}
   m_CullingMode: 0
