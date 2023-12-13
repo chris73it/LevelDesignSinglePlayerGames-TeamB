@@ -4556,7 +4556,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2089154636}
   - component: {fileID: 2089154637}
-  - component: {fileID: 2089154638}
   m_Layer: 0
   m_Name: LevelSelectManager
   m_TagString: Untagged
@@ -4591,30 +4590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd185404fca54716ab0d850c7e74510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2089154638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089154634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73cea3ad11e9149fc846f583baeda4f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level1BT: {fileID: 2096125913041082161}
-  level2BT: {fileID: 3822945291347660663}
-  level3BT: {fileID: 1378114768578013290}
-  level4BT: {fileID: 7915042098851877735}
-  level5BT: {fileID: 45336154}
-  level6BT: {fileID: 1502565743}
-  level7BT: {fileID: 401689262}
-  level8BT: {fileID: 964676543}
-  level9BT: {fileID: 1721847668}
-  level10BT: {fileID: 45876419}
-  level11BT: {fileID: 1753546844}
-  level12BT: {fileID: 1148874666}
 --- !u!1 &2140485069
 GameObject:
   m_ObjectHideFlags: 0
