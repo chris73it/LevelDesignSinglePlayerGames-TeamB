@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private bool isGhostMode = false;
     private List<Collider2D> colliders;
     private bool inGhostTrigger = false;
-    public Vector2 ghostVelocityScalars = new(1.5f, 1.5f);
+    public Vector2 ghostVelocityScalars = new(2.25f, 2.25f);
 
     //delegate to invoke a respawn message upon death
     public static event Action Respawn;
@@ -178,21 +178,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isGhostMode && !inGhostTrigger) {
-            List<Collider2D> cols = new();
-            trigger.OverlapCollider(new ContactFilter2D(), cols);
-            bool inWall = false;
-
-            foreach(Collider2D col in cols) {
-                if(col.tag != "Player") { // temp; figure out a way to specify only walls
-                    inWall = true;
-                    break;
-                }
-            }
-            if(!inWall) {
-                EndGhost();
-            }
-        }
 
         if(debugMode) {
             // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
@@ -216,6 +201,22 @@ public class PlayerController : MonoBehaviour
     //called every physics frame so the player keeps moving
     private void FixedUpdate()
     {
+        if(isGhostMode && !inGhostTrigger) {
+            List<Collider2D> cols = new();
+            trigger.OverlapCollider(new ContactFilter2D(), cols);
+            bool inWall = false;
+
+            foreach(Collider2D col in cols) {
+                if(col.tag != "Player") { // temp; figure out a way to specify only walls
+                    inWall = true;
+                    break;
+                }
+            }
+            //Debug.Log("inWall: " + inWall);
+            if(!inWall) {
+                EndGhost();
+            }
+        }
         switch (state) {
             case States.right:
                 Move(playerSpeed * speedScalar);
@@ -233,15 +234,18 @@ public class PlayerController : MonoBehaviour
         isGhostMode = true;
         playerRB.velocity *= ghostVelocityScalars;
         playerRB.isKinematic = true;
+        Debug.Log(playerRB.velocity);
         GetComponent<SpriteRenderer>().color = Color.cyan;
         inGhostTrigger = true;
         isWalking = false;
+        Debug.Log("enterGhost");
     }
 
     // upon exiting the intangibility triger, start performing wall checks to end intangibility
     public void GhostTriggerExit() {
         GetComponent<SpriteRenderer>().color = Color.blue;
         inGhostTrigger = false;
+        Debug.Log("exitGhostTrigger");
     }
 
 
@@ -249,6 +253,7 @@ public class PlayerController : MonoBehaviour
         isGhostMode = false;
         playerRB.isKinematic = false;
         GetComponent<SpriteRenderer>().color = Color.white;
+        Debug.Log("endGhost");
         isWalking = true;
     }
 
