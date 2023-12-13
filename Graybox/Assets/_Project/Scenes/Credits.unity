@@ -760,13 +760,13 @@ MonoBehaviour:
     Josh (Programmer, Level Designer)
 
     Kadenz (Lead
-    Level Designer)
+    Level Designer, Artist)
 
     Cal (Writer, Level Designer)
 
 
-    Tileset by Mrmo Tarius
-    (https://itch.io/profile/mrmotarius)'
+    Character Sprite
+    by Mrmo Tarius (https://itch.io/profile/mrmotarius)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84b103da666940649b612fca25e393ad, type: 2}
   m_sharedMaterial: {fileID: -2630116734301364664, guid: 84b103da666940649b612fca25e393ad, type: 2}
