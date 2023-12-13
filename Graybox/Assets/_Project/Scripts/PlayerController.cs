@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     //delegate to invoke a respawn message upon death
     public static event Action Respawn;
 
+    public bool debugMode = false;
+
     Collider2D trigger;
 
     enum States
@@ -192,22 +194,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Jump();
-        }
+        if(debugMode) {
+            // continuation from previous scripts; likely would only call the jump method from jumpy blocks not player control
+            if(Input.GetKeyDown(KeyCode.J)) {
+                Jump();
+            }
 
-        // Debug kill
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Dying();
-        }
+            // Debug kill
+            if(Input.GetKeyDown(KeyCode.K)) {
+                Dying();
+            }
 
-        // Debug turn around. We only want to actually use this with power ups.
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            TurnAround();
+            // Debug turn around. We only want to actually use this with power ups.
+            if(Input.GetKeyDown(KeyCode.L)) {
+                TurnAround();
+            }
         }
 
     }
@@ -269,24 +270,4 @@ public class PlayerController : MonoBehaviour
         PlaybackControl.restart -= Restart;
         WinScript.onWin -= Pause;
     }
-
-    /*
-    //ground check so player can't double jump
-    //***requires "Ground" tag for any jumpable objects***
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            isTouchingGround = true;
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            isTouchingGround = false;
-        }
-    }
-    */
 }
