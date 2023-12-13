@@ -28,12 +28,6 @@ public class LevelTracker : ScriptableObject
             fourthGate = false;
             fifthGate = false;
             sixthGate = false;
-    }
-
-    private void OnEnable()
-    {
-        WinScript.onWin += WinState;
-
         completedLevels[1] = false;
         completedLevels[2] = false;
         completedLevels[3] = false;
@@ -46,6 +40,11 @@ public class LevelTracker : ScriptableObject
         completedLevels[10] = false;
         completedLevels[11] = false;
         completedLevels[12] = false;
+    }
+
+    private void OnEnable()
+    {
+        WinScript.onWin += WinState;
     }
     private void OnDisable()
     {
