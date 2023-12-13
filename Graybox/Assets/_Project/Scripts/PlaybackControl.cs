@@ -27,12 +27,9 @@ public class PlaybackControl : MonoBehaviour
         // assigns the main camera as the render camera for the Canvas, only works if we stick with main camera going forward
         canvas.worldCamera = Camera.main;
         UpdateColors();
-        play += UpdateColors;
-        restart += UpdateColors;
     }
 
     void UpdateColors() {
-
         playButton.GetComponent<Image>().color = isPlaying ? disabledColor : Color.white;
         restartButton.GetComponent<Image>().color = isPlaying ? Color.white : disabledColor; 
     }
@@ -42,6 +39,7 @@ public class PlaybackControl : MonoBehaviour
         if(!isPlaying) {
             isPlaying = true;
             play?.Invoke();
+            UpdateColors();
         }
     }
 
@@ -49,6 +47,7 @@ public class PlaybackControl : MonoBehaviour
         if(isPlaying) {
             isPlaying = false;
             restart?.Invoke();
+            UpdateColors();
         }
     }
 
