@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548415d9560a24dddbef53c0236dd4cd, type: 3}
   m_Name: FinalLevel6Limits
   m_EditorClassIdentifier: 
-  blockLimit: 7
-  rampLimit: 5
-  jumpLimit: 7
-  directionLimit: 7
+  blockLimit: 6
+  rampLimit: 2
+  jumpLimit: 3
+  directionLimit: 0
   wallsLimit: 0

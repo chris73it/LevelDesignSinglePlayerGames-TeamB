@@ -38,6 +38,12 @@ ScriptedImporter:
     _asset: {instanceID: 0}
   - _key: Ramp
     _asset: {fileID: 7325645274404111737, guid: 81df9a3621fad40de9873b464a461171, type: 3}
+  - _key: LeftSpike
+    _asset: {fileID: 8526706411650910179, guid: 809fb1665b233a5489acc1a30dcede83, type: 3}
+  - _key: RightSpike
+    _asset: {fileID: 4664054714226398917, guid: 9fff0741a00096c4a91ec5feffae08f0, type: 3}
+  - _key: DownSpike
+    _asset: {fileID: 3385655090231325504, guid: 5bf42e9b400671b4380ab8cec990ff56, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
