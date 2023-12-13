@@ -1162,10 +1162,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BallonMove
       objectReference: {fileID: 0}
-    - target: {fileID: 3352033114341288210, guid: 3555bf24ec7f044698ac7b657f27f01f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4185829978944023345, guid: 3555bf24ec7f044698ac7b657f27f01f, type: 3}
       propertyPath: m_RootOrder
       value: 2

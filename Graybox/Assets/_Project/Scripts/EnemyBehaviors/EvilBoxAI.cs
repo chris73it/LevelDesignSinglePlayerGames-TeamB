@@ -10,12 +10,13 @@ public class EvilBoxAI : MonoBehaviour {
     bool movingRight = true;
 
     GhostAI patrol;
-    DoesDamage damage;
+    //DoesDamage damage;
     Rigidbody2D rb;
 
     void Play() {
         isActive = true;
-        damage.enabled = false;
+        //GetComponent<DoesDamage>().enabled = false;
+       // damage.enabled = false;
         patrol.enabled = false;
     }
     // Start is called before the first frame update
@@ -25,14 +26,15 @@ public class EvilBoxAI : MonoBehaviour {
         patrol = GetComponent<GhostAI>();
         PlaybackControl.play -= patrol.Play;
 
-        damage = GetComponent<DoesDamage>();
+       // damage = GetComponent<DoesDamage>();
         rb = GetComponent<Rigidbody2D>();
 
         PlayerController.Respawn += Reset;
     }
 
     void Reset() {
-        damage.enabled = false;
+        //damage.enabled = false;
+        GetComponent<DoesDamage>().enabled = false;
         patrol.enabled = false;
         isActive = false;
     }
@@ -62,9 +64,10 @@ public class EvilBoxAI : MonoBehaviour {
         rb.bodyType = RigidbodyType2D.Dynamic;
         patrol.enabled = true;
         patrol.Play();
-        damage.enabled = true;
+        //damage.enabled = true;
+        GetComponent<DoesDamage>().enabled = true;
 
-        if(patrol.movingRight != (collision.gameObject.transform.position.x > transform.position.x)) {
+        if (patrol.movingRight != (collision.gameObject.transform.position.x > transform.position.x)) {
             patrol.TurnAround();
         }
     }
