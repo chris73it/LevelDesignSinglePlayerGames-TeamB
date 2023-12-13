@@ -28,26 +28,34 @@ public class LevelTracker : ScriptableObject
             fourthGate = false;
             fifthGate = false;
             sixthGate = false;
+            completedLevels[1] = false;
+            completedLevels[2] = false;
+            completedLevels[3] = false;
+            completedLevels[4] = false;
+            completedLevels[5] = false;
+            completedLevels[6] = true;
+            completedLevels[7] = false;
+            completedLevels[8] = false;
+            completedLevels[9] = false;
+            completedLevels[10] = false;
+            completedLevels[11] = false;
+            completedLevels[12] = false;
+
+
     }
 
     private void OnEnable()
     {
-        //Debug.Log("leveltracker enabled");
 
         WinScript.onWin += WinState;
 
-        completedLevels[1] = false;
-        completedLevels[2] = false;
-        completedLevels[3] = false;
-        completedLevels[4] = false;
-        completedLevels[5] = false;
-        completedLevels[6] = true;
-        completedLevels[7] = false;
-        completedLevels[8] = false;
-        completedLevels[9] = false;
-        completedLevels[10] = false;
-        completedLevels[11] = false;
-        completedLevels[12] = false;
+
+     
+    }
+
+    private void OnEnable()
+    {
+        WinScript.onWin += WinState;
     }
     private void OnDisable()
     {
