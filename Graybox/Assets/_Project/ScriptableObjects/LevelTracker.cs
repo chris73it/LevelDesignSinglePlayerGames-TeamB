@@ -32,6 +32,8 @@ public class LevelTracker : ScriptableObject
 
     private void OnEnable()
     {
+        //Debug.Log("leveltracker enabled");
+
         WinScript.onWin += WinState;
 
         completedLevels[1] = false;
