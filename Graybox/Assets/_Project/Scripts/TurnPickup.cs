@@ -6,9 +6,12 @@ public class TurnPickup : MonoBehaviour
 {
     // Start is called before the first frame update
     public static event Action turnaround;
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        turnaround?.Invoke();
-        //pickup.SetActive(false);
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.isTrigger) {
+            Debug.Log(collision.gameObject);
+            Debug.Log("turn around");
+            turnaround?.Invoke();
+        }
     }
 }

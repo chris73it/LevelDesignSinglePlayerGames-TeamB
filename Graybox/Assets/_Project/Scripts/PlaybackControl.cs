@@ -29,11 +29,23 @@ public class PlaybackControl : MonoBehaviour
         UpdateColors();
     }
 
+    private void OnEnable() {
+        PlayerController.Respawn += ResetButtons;
+    }
+
+    private void OnDisable() {
+        PlayerController.Respawn -= ResetButtons;
+    }
+
     void UpdateColors() {
         playButton.GetComponent<Image>().color = isPlaying ? disabledColor : Color.white;
         restartButton.GetComponent<Image>().color = isPlaying ? Color.white : disabledColor; 
     }
 
+    void ResetButtons() {
+        isPlaying = false;
+        UpdateColors();
+    }
     public void Play()
     {
         if(!isPlaying) {
