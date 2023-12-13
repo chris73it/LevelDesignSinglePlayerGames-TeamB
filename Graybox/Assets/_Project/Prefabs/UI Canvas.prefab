@@ -110,7 +110,7 @@ RectTransform:
   - {fileID: 1838415171503684413}
   - {fileID: 2504184358533811208}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButton: {fileID: 4388860514129356636}
   restartButton: {fileID: 2993838130294512586}
+  disabledColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
 --- !u!223 &8820027492688792468
 Canvas:
   m_ObjectHideFlags: 0

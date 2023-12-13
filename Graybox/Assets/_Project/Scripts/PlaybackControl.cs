@@ -9,12 +9,13 @@ public class PlaybackControl : MonoBehaviour
 {
    [SerializeField] Button playButton;
    [SerializeField] Button restartButton;
+   [SerializeField] Color disabledColor;
   
     public static event Action play;
     public static event Action restart;
     //reference to attached UI canvas; you should know you'll have this since it's a UI based script
     private Canvas canvas;
-
+    bool isPlaying = false;
 
     void Start()
     {
@@ -25,18 +26,30 @@ public class PlaybackControl : MonoBehaviour
         canvas = GetComponent<Canvas>();
         // assigns the main camera as the render camera for the Canvas, only works if we stick with main camera going forward
         canvas.worldCamera = Camera.main;
-
+        UpdateColors();
+        play += UpdateColors;
+        restart += UpdateColors;
     }
 
+    void UpdateColors() {
+
+        playButton.GetComponent<Image>().color = isPlaying ? disabledColor : Color.white;
+        restartButton.GetComponent<Image>().color = isPlaying ? Color.white : disabledColor; 
+    }
 
     public void Play()
     {
-        play?.Invoke();
+        if(!isPlaying) {
+            isPlaying = true;
+            play?.Invoke();
+        }
     }
 
-    public void Restart()
-    {
-        restart?.Invoke();
+    public void Restart() {
+        if(isPlaying) {
+            isPlaying = false;
+            restart?.Invoke();
+        }
     }
 
 }
