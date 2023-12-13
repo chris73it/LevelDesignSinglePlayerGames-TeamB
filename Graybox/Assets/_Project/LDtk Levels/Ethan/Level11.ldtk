@@ -2202,6 +2202,22 @@
 							"defUid": 786,
 							"px": [116,20],
 							"fieldInstances": []
+						},
+						{
+							"__identifier": "Balloon",
+							"__grid": [4,4],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#63C74D",
+							"__worldX": 36,
+							"__worldY": 36,
+							"iid": "1e22a8a0-8990-11ee-b6a4-7f6e9157c319",
+							"width": 8,
+							"height": 8,
+							"defUid": 784,
+							"px": [36,36],
+							"fieldInstances": []
 						}
 					]
 				},
