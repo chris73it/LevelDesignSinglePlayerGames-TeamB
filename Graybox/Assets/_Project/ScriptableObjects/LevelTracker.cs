@@ -43,16 +43,6 @@ public class LevelTracker : ScriptableObject
 
 
     }
-
-    private void OnEnable()
-    {
-
-        WinScript.onWin += WinState;
-
-
-     
-    }
-
     private void OnEnable()
     {
         WinScript.onWin += WinState;
