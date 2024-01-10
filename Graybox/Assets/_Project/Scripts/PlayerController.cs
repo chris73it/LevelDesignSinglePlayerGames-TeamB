@@ -117,9 +117,11 @@ public class PlayerController : MonoBehaviour
         {
             case States.right:
                 state = States.left;
+                GetComponent<SpriteRenderer>().flipX = true;
                 break;
             case States.left:
                 state = States.right;
+                GetComponent<SpriteRenderer>().flipX = false;
                 break;
         }
     }
