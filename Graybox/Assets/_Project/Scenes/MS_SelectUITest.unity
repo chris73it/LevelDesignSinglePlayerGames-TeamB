@@ -347,7 +347,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2089154637}
         m_TargetAssemblyTypeName: LevelManager, Runtime
-        m_MethodName: EnterLevel5
+        m_MethodName: EnterLevel6
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -482,7 +482,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2089154637}
         m_TargetAssemblyTypeName: LevelManager, Runtime
-        m_MethodName: EnterLevel10
+        m_MethodName: EnterLevel3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1019,7 +1019,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2089154637}
         m_TargetAssemblyTypeName: LevelManager, Runtime
-        m_MethodName: EnterLevel7
+        m_MethodName: EnterLevel8
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2192,7 +2192,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2089154637}
         m_TargetAssemblyTypeName: LevelManager, Runtime
-        m_MethodName: EnterLevel8
+        m_MethodName: EnterLevel9
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3370,7 +3370,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2089154637}
         m_TargetAssemblyTypeName: LevelManager, Runtime
-        m_MethodName: EnterLevel6
+        m_MethodName: EnterLevel7
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3762,7 +3762,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2089154637}
         m_TargetAssemblyTypeName: LevelManager, Runtime
-        m_MethodName: EnterLevel9
+        m_MethodName: EnterLevel10
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4923,7 +4923,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2089154637}
         m_TargetAssemblyTypeName: LevelManager, Runtime
-        m_MethodName: EnterLevel3
+        m_MethodName: EnterLevel4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6306,7 +6306,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2089154637}
         m_TargetAssemblyTypeName: LevelManager, Runtime
-        m_MethodName: EnterLevel4
+        m_MethodName: EnterLevel5
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
